@@ -1,5 +1,19 @@
 # java-base-project
 
+Enunciados: 
+https://docs.google.com/document/d/1VjI_qd5L2GGb6oY8Ti2PxEbFEMvMN1yOcK_0mYn59Tg/edit
+
+https://docs.google.com/document/d/1PQjxMl-lHBoFaaaJZFOJodAfxpouqy1qjaPf0D1kAZc/edit#
+
+https://docs.google.com/document/d/1PjtfCoAExroNMmW5SJcM2wR0wzjPC5SxQ995iX0_noQ/edit
+
+https://docs.google.com/document/d/1JzLsrtnwYnNZpqRdiBkmYiPvHsRj1h3ausNf11CEmZo/edit
+
+https://docs.google.com/document/d/1gQGNnpKZzHFpboH2zSyxrS2ZeUKyXid6kpCKydDjNAE/edit
+
+https://docs.google.com/document/d/1qwxtFa04N7ViIILOaKXd5DJD6E3zeFS93bvpolmMtTQ/edit
+
+
 Esta es una plantilla de proyecto diseñada para: 
 
 * Java 8. :warning: Si bien el proyecto no lo limita explícitamente, el comando `mvn verify` no funcionará con versiones mas modernas de Java. 
