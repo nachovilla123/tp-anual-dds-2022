@@ -15,7 +15,7 @@ class AgenteSectorialTest {
     RepositorioDeOrganizaciones repositorioDeOrganizaciones =  RepositorioDeOrganizaciones.getInstance();
 
     //------- alta de organizaciones ------
-    Ubicacion ubicacion1 = new Ubicacion(1, "Pedro Goyena", 2000);
+    Ubicacion ubicacion1 = new Ubicacion(1,"Pedro Goyena", 2000);
     Organizacion organizacion_01 = new Organizacion("estas", Organizacion.Tipo.ONG,ubicacion1, Organizacion.Clasificacion.EMPRESA_SECTOR_SECUNDARIO);
     Organizacion organizacion_02 = new Organizacion("leyendo", Organizacion.Tipo.ONG,ubicacion1, Organizacion.Clasificacion.EMPRESA_SECTOR_SECUNDARIO);
     Organizacion organizacion_03 = new Organizacion("esto", Organizacion.Tipo.ONG,ubicacion1, Organizacion.Clasificacion.EMPRESA_SECTOR_SECUNDARIO);

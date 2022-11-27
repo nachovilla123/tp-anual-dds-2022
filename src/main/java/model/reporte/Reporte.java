@@ -4,6 +4,7 @@ import model.Persistencia.PersistentEntity;
 import model.implementacionCSV.HuellaDeCarbono;
 import lombok.Getter;
 import lombok.Setter;
+import model.implementacionCSV.Periodo;
 import org.uqbarproject.jpa.java8.extras.convert.LocalDateConverter;
 
 import javax.persistence.*;
@@ -35,12 +36,16 @@ public class Reporte extends PersistentEntity {
   @Column
   Double valorTotal;
 
+  @Enumerated(EnumType.STRING)
+  Periodo periodo;
+
   public  Reporte (){}
 
-  public  Reporte (HuellaDeCarbono hcActividades, HuellaDeCarbono hcTramos){
+  public  Reporte (HuellaDeCarbono hcActividades, HuellaDeCarbono hcTramos, Periodo periodo){
     this.actividadesGenerales= hcActividades;
     this.tramos = hcTramos;
     this.fecha= LocalDate.now();
+    this.periodo = periodo;
   }
 
   public Double getValorTotalHc(){
@@ -50,5 +55,15 @@ public class Reporte extends PersistentEntity {
   public HuellaDeCarbono obtenerTotalHc(){
     return new HuellaDeCarbono(this.getValorTotalHc());
   }
+
+  public boolean perteneceAPeriodo(Periodo periodo) {
+    return this.periodo.equals(periodo);
+  }
+
+  public Boolean sonDeLaMismaFecha(LocalDate unaFecha) {
+    return this.periodo.sonDeLaMismaFecha(this.fecha,unaFecha);
+  }
+
+
 
 }

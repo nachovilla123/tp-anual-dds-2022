@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="icon" type="image/png" href="../../imagenes/logos_web/plantita1.png"/>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Grupo 2</title>
-    <link rel="icon" type="image/png" href="todo: icono q aparece en la pestania"/>
+     <link rel="icon" type="image/png" href="../../imagenes/logos_web/plantita1.png"/>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
@@ -17,6 +18,20 @@
 </head>
 
 <body class = "d-flex flex-column min-vh-100">
+
+
+{{#if miembro}} {{>user_nav-bar.hbs}}
+{{/if}}
+
+{{#if org}} {{>org_nav-bar.hbs}}
+{{/if}}
+
+{{#if agente}} {{>nav-bar-agentesectorial.hbs}}
+{{/if}}
+{{#if admin}} {{>nav-bar-admin.hbs}}
+{{/if}}
+
+
 <div style=" text-align:center;">
     <div style="margin: 25px;">
         <h1 style="font-size:75px; font-family: 'Archivo', sans-serif;">GUIA DE RECOMENDACIONES</h1>
@@ -42,7 +57,7 @@
             <div class="p-3 border bg-light">
                 <img class="img-fluid px-5" style="width:300px;"
 
-                     src="../imagenes/logosEco/2992439_nature_leaves_light_eco.png">
+                     src="/imagenes/logosEco/2992439_nature_leaves_light_eco.png">
 
 
 
@@ -58,7 +73,7 @@
         <div class="col-6">
             <div class="p-3 border bg-light"> <img class="img-fluid px-5" style="width:300px;"
 
-                                                   src="../imagenes/logosEco/2992442_ecology_recycle_water_save.png"> <!-- IMAGEN TEXTO 2--></div>
+                                                   src="/imagenes/logosEco/2992442_ecology_recycle_water_save.png"> <!-- IMAGEN TEXTO 2--></div>
         </div>
 
         <div class="col-6"><!-- TEXTO INFORMATIVO-->
@@ -81,7 +96,7 @@
         <div class="col-6"><!-- IMAGEN-->
             <div class="p-3 border bg-light"><img class="img-fluid px-5" style="width:300px;"
 
-                                                  src="../imagenes/logosEco/2992441_recyclingwaste_ecology_recycle.png"></div>
+                                                  src="/imagenes/logosEco/2992441_recyclingwaste_ecology_recycle.png"></div>
         </div>
 
 
@@ -90,7 +105,7 @@
         <div class="col-6">
             <div class="p-3 border bg-light"> <img class="img-fluid px-5" style="width:300px;"
 
-                                                   src="../imagenes/logosEco/2992451_eco_world_leaves.png"> <!-- IMAGEN TEXTO 2--></div>
+                                                   src="/imagenes/logosEco/2992451_eco_world_leaves.png"> <!-- IMAGEN TEXTO 2--></div>
         </div>
 
         <div class="col-6"><!-- TEXTO INFORMATIVO-->
@@ -121,7 +136,7 @@
         <div class="col-6"><!-- IMAGEN-->
             <div class="p-3 border bg-light"><img class="img-fluid px-5" style="width:300px;"
 
-                                                  src="../imagenes/logosEco/2992448_waste_eco_home.png"></div>
+                                                  src="/imagenes/logosEco/2992448_waste_eco_home.png"></div>
         </div>
 
 
@@ -130,7 +145,7 @@
         <div class="col-6">
             <div class="p-3 border bg-light"> <img class="img-fluid px-5" style="width:300px;"
 
-                                                   src="../imagenes/logosEco/2992437_eco_energy_light_bulb.png"> <!-- IMAGEN TEXTO 2--></div>
+                                                   src="/imagenes/logosEco/2992437_eco_energy_light_bulb.png"> <!-- IMAGEN TEXTO 2--></div>
         </div>
 
         <div class="col-6"><!-- TEXTO INFORMATIVO-->
@@ -157,7 +172,7 @@
         <div class="col-6"><!-- IMAGEN-->
             <div class="p-3 border bg-light"><img class="img-fluid px-5" style="width:300px;"
 
-                                                  src="../imagenes/logosEco/2992432_can_garden_water_watering.png"></div>
+                                                  src="/imagenes/logosEco/2992432_can_garden_water_watering.png"></div>
         </div>
 
 
@@ -166,7 +181,7 @@
         <div class="col-6">
             <div class="p-3 border bg-light"> <img class="img-fluid px-5" style="width:300px;"
 
-                                                   src="../imagenes/logosEco/2992446_truck_waste_recycle_garbage.png"> <!-- IMAGEN TEXTO 2--></div>
+                                                   src="/imagenes/logosEco/2992446_truck_waste_recycle_garbage.png"> <!-- IMAGEN TEXTO 2--></div>
         </div>
 
         <div class="col-6"><!-- TEXTO INFORMATIVO-->
@@ -187,7 +202,7 @@
         <div class="col-6"><!-- IMAGEN-->
             <div class="p-3 border bg-light"><img class="img-fluid px-5" style="width:300px;"
 
-                                                  src="../imagenes/logosEco/2992453_bin_recyclewaste_ecology.png"></div>
+                                                  src="/imagenes/logosEco/2992453_bin_recyclewaste_ecology.png"></div>
         </div>
 
 

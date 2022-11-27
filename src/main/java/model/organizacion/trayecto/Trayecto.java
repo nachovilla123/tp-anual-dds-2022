@@ -19,6 +19,9 @@ public class Trayecto{ // un trayecto es una lista de tramos.
   @Column(name = "id_trayecto", nullable = false)
   private Long id;
 
+  @Column
+  public String nombre;
+
   //@OneToOne(cascade = CascadeType.ALL)
   //@JoinColumn(name = "id_ubicacionInicial")
   @AttributeOverrides({
@@ -44,6 +47,13 @@ public class Trayecto{ // un trayecto es una lista de tramos.
   @OrderColumn
   private List<Tramo> tramosDelTrayecto = new ArrayList<Tramo>();
 
+
+  public Trayecto(Ubicacion pi, Ubicacion pf, List<Tramo> tramos , String nombre) {
+    this.puntoInicial = pi;
+    this.puntoFinal = pf;
+    this.tramosDelTrayecto = tramos;
+    this.nombre = nombre;
+  }
 
   public Trayecto(Ubicacion pi, Ubicacion pf, List<Tramo> tramos) {
     this.puntoInicial = pi;

@@ -3,14 +3,25 @@ package model.organizacion;
 
 import lombok.Getter;
 import lombok.Setter;
+import model.Persistencia.PersistentEntity;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.util.Set;
 
 @Getter
 @Setter
-public class Contacto {
+
+@Entity
+@Table(name = "contacto")
+public class Contacto extends PersistentEntity {
+
+    @Column
     String emailDeContacto;
+    @Column
     int NumeroDeContactoWPP;
+    @Column
     String nombreDelContacto;
 
     public Contacto(String emailDeContacto,int numeroDeContactoWPP,String nombreDelContacto){
@@ -18,6 +29,7 @@ public class Contacto {
         this.NumeroDeContactoWPP = numeroDeContactoWPP;
         this.nombreDelContacto = nombreDelContacto;
     }
+    public Contacto(){}
 
     public boolean yaExiste(Set<Contacto> contactos) {
         return this.elCorreoEstaRegistrado(contactos) && this.elWPPEstaRegistrado(contactos);
@@ -32,8 +44,6 @@ public class Contacto {
         return contactos.stream().anyMatch( contacto -> contacto.NumeroDeContactoWPP == this.NumeroDeContactoWPP) ;
     }
     // <--------- esta bien hacer esto aca? --------->
-
-
 
 
 }

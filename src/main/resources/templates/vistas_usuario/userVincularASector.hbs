@@ -5,8 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mi impacto ambiental</title>
-    <link rel="icon" type="image/png" href="todo: icono q aparece en la pestania"/>
+     <link rel="icon" type="image/png" href="../../imagenes/logos_web/plantita1.png"/>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="../../estiloSelectYBoton.css">
 </head>
 
 <body class = "d-flex flex-column min-vh-100">
@@ -20,28 +21,30 @@
         <hr>
     </div>
 
-    <div style=" margin:25px;">
-        <div>
-
-            <form action="/sectores/pedidoDeVinculacion" method="POST">
-
-
-                <select name="ids"  style="width:230px ;" class="custom-select"  required>
-                    {{#each sectores}}
-                        <option value="{{id}},{{organizacion.id}}"> {{sectorDeTrabajo}} </option>
-                    {{/each}}
-                </select>
-
-                <button type="submit" value="Solicitar vinculacion"> VINCULAR</button>
-
-            </form>
-
-
-        </div>
-
-
+    
+    <!-- mundanza abajo-->
+    <div  style="padding-left: 30px; padding-top: 30px; border-radius:25px ; background-color:#2596be; width: 500px; margin-left: 33%; height:300px;">
+        <form action="/sectores/pedidoDeVinculacion" method="POST">
+            <div>
+                <div style="margin-left:  20%;" class="content-select">
+                    <select name="ids"  style="width:230px ;" class="content-select" onchange="obtenerSectores('select_org', 'select_sector')"  required>
+                        {{#each sectores}}
+                            <option value="{{id}},{{organizacion.id}}"> {{sectorDeTrabajo}} </option>
+                        {{/each}}
+                    </select>
+                    <div style="margin-top:10%;margin-left:23%;">
+                        <button type="submit" class="boton verde" value="Solicitar vinculacion"><span>Vincular </span> </button>
+                    </div>
+                </div>
+            </div>
+        </form>
     </div>
+
+
+
+
 </div>
+
 
 
 

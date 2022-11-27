@@ -7,6 +7,7 @@ import model.mediodetransporte.VehiculoParticular;
 import model.mediodetransporte.transportepublico.Parada;
 import model.mediodetransporte.transportepublico.TransportePublico;
 import model.organizacion.trayecto.Ubicacion;
+import model.repositorios.repositoriosDBs.RepositorioFactorDeEmision;
 
 import java.util.List;
 
@@ -33,7 +34,9 @@ public class MedioDeTransporteFactory {
   private FactorDeEmision tcDieselFE1() {
 
     //TipoDeConsumo.DIESEL_GASOIL.setFactorDeEmision(new FactorDeEmision(1));
-    return  new FactorDeEmision(1.0,TipoDeConsumo.DIESEL_GASOIL);
+    //return  new FactorDeEmision(1.0,TipoDeConsumo.DIESEL_GASOIL);
+
+    return RepositorioFactorDeEmision.getInstance().obtenerPorTipoDeConsumo(TipoDeConsumo.DIESEL_GASOIL);
   }
 
 }

@@ -15,8 +15,7 @@ class GestorCSVTest {
 
   @Test
   public void leerTodosLosDAEnCSV() {
-    RepositorioFactorDeEmisionCSV repoFE = new RepositorioFactorDeEmisionCSV("FECSV"); // se ve que no lo usamos para nada
-    RepositorioDatosDeActividadCSV repoDA = new RepositorioDatosDeActividadCSV("DACSV",repoFE);
+    RepositorioDatosDeActividadCSV repoDA = new RepositorioDatosDeActividadCSV("DACSV");
     System.out.print(repoDA.obtenerDatosActividades().toString());
   }
   @Test

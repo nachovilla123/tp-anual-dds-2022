@@ -2,6 +2,7 @@ package controllers;
 
 
 import model.implementacionCSV.FactorDeEmision;
+import model.implementacionCSV.Periodo;
 import model.implementacionCSV.tipoDeConsumo.TipoDeConsumo;
 import model.mediodetransporte.EcoFriendly;
 import model.mediodetransporte.ServicioContratado;
@@ -12,6 +13,7 @@ import model.organizacion.Organizacion;
 import model.organizacion.Persona;
 import model.organizacion.Sector;
 import model.organizacion.trayecto.Tramo;
+import model.organizacion.trayecto.Trayecto;
 import model.organizacion.trayecto.Ubicacion;
 import model.repositorios.repositoriosDBs.RepositorioDeOrganizaciones;
 import model.repositorios.repositoriosDBs.RepositorioPersona;
@@ -28,6 +30,8 @@ import spark.Request;
 import spark.Response;
 
 
+import javax.jws.soap.SOAPBinding;
+import java.awt.image.AreaAveragingScaleFilter;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -37,6 +41,11 @@ public class UsuarioController  implements WithGlobalEntityManager, Transactiona
   public ModelAndView menu(Request request, Response response) {
     return new ModelAndView(null, "vistas_usuario/userMenu.hbs");
   }
+
+  public ModelAndView home(Request request, Response response) {
+    return new ModelAndView(null, "vistas_usuario/userHome.hbs");
+  }
+
 
   //---------------------- ORGANIZACIONES POR PARTE DEL USUARIO-----------------------------------------//
   public ModelAndView misOrganizaciones(Request request, Response response) {
@@ -187,8 +196,8 @@ public class UsuarioController  implements WithGlobalEntityManager, Transactiona
 
     if (transporte.equalsIgnoreCase("3")) {
 
-      Ubicacion ubicacionDestino = new Ubicacion(999,request.queryParams("ubicacionInicioEco"),999);
-      Ubicacion ubicacionFinal = new Ubicacion(999,request.queryParams("ubicacionFinalEco"), 999);
+      Ubicacion ubicacionDestino = new Ubicacion(new Integer (request.queryParams("localidadInicialEco")),request.queryParams("ubicacionInicioEco"),new Integer (request.queryParams("alturaInicialEco")));
+      Ubicacion ubicacionFinal = new Ubicacion(new Integer (request.queryParams("localidadFinalEco")),request.queryParams("ubicacionFinalEco"), new Integer(request.queryParams("alturaFinalEco")));
 
       //Constructor: nada
       EcoFriendly ecoFriendlyCreado = new EcoFriendly(null);
@@ -198,11 +207,11 @@ public class UsuarioController  implements WithGlobalEntityManager, Transactiona
       System.out.println("ES UN SERIVICIO CONTRATADO");
 
 
-      Ubicacion ubicacionDestino = new Ubicacion(999,request.queryParams("ubicacionInicioServicio"),999);
-      Ubicacion ubicacionFinal = new Ubicacion(999, request.queryParams("ubicacionFinalServicio"), 999);
+      Ubicacion ubicacionDestino = new Ubicacion(new Integer (request.queryParams("localidadInicialServico")),request.queryParams("ubicacionInicioServicio"),new Integer(request.queryParams("alturaInicialServicio")));
+      Ubicacion ubicacionFinal = new Ubicacion(new Integer (request.queryParams("localidadFinalServicio")),request.queryParams("ubicacionFinalServicio"), new Integer(request.queryParams("alturaFinalServicio")));
 
       //Constructor: ServicioContratado(String tipoServiciocontratado,Ubicacion ubicacionInicio,Ubicacion ubicacionFinal,Double cantidadDeCombustiblePorKM,TipoDeConsumo
-      ServicioContratado servicioContratadoCreado = new ServicioContratado(request.queryParams("tipoServicio"),
+      ServicioContratado servicioContratadoCreado = new ServicioContratado(request.queryParams("nameServicio"),
           ubicacionDestino,
           ubicacionFinal,
           2.0,
@@ -211,17 +220,20 @@ public class UsuarioController  implements WithGlobalEntityManager, Transactiona
       return new Tramo(nombreIdentificadorDelTramo, servicioContratadoCreado, ubicacionDestino, ubicacionFinal);
 
     }else if (transporte.equalsIgnoreCase("4")) {
-      System.out.println("ES UN Vehiculo Particular");
+      System.out.println("Es un Vehiculo Particular");
 
       String tipoVehiculo = request.queryParams("tipoVehiculo");
-      String lineaVehiculo = request.queryParams("lineaVehiculo");
+      VehiculoParticular.TipotransporteParticular tipo = VehiculoParticular.TipotransporteParticular.valueOf(tipoVehiculo);
 
-      Ubicacion ubicacionDestino = new Ubicacion(999,request.queryParams("ubicacionInicioVehiculo"),999);
-      Ubicacion ubicacionFinal = new Ubicacion(999,request.queryParams("ubicacionFinalVehiculo"), 999);
+      String combustibleVehiculo = request.queryParams("combustibleVehiculo");
+      VehiculoParticular.TipoCombustible cumbustible = VehiculoParticular.TipoCombustible.valueOf(combustibleVehiculo);
+
+      Ubicacion ubicacionDestino = new Ubicacion(new Integer (request.queryParams("localidadInicialVehiculo")),request.queryParams("ubicacionInicioVehiculo"),new Integer (request.queryParams("alturaInicialVehiculo")));
+      Ubicacion ubicacionFinal = new Ubicacion(new Integer (request.queryParams("localidadFinalVehiculo")),request.queryParams("ubicacionFinalVehiculo"), new Integer(request.queryParams("alturaFinalVehiculo")));
 
       //Constructor: Enum->TipoCombustible , Enum-> TipotransporteParticular , double cantidadDeCombustiblePorKM,enum->TipoDeConsumo
-      VehiculoParticular vehiculoParticularCreado = new VehiculoParticular(VehiculoParticular.TipoCombustible.GNC,
-          VehiculoParticular.TipotransporteParticular.AUTO, 2.0,
+      VehiculoParticular vehiculoParticularCreado = new VehiculoParticular(cumbustible,
+          tipo, 2.0,
           new FactorDeEmision(2.0,TipoDeConsumo.DIESEL_GASOIL));
 
       return new Tramo(nombreIdentificadorDelTramo, vehiculoParticularCreado, ubicacionDestino, ubicacionFinal);
@@ -234,8 +246,8 @@ public class UsuarioController  implements WithGlobalEntityManager, Transactiona
       String lineaTransporte = request.queryParams("lineaTransporte");
       TransportePublico transportePublicoTraidodeLaDB = new TransportePublico();
 
-      Ubicacion ubicacionDestino = new Ubicacion(999,request.queryParams("paradaInicio"),999);
-      Ubicacion ubicacionFinal = new Ubicacion(999,request.queryParams("paradaFin"), 999);
+      Ubicacion ubicacionDestino = new Ubicacion(new Integer (request.queryParams("localidadInicialPublico")),request.queryParams("paradaInicio"), new Integer(request.queryParams("alturaInicial")));
+      Ubicacion ubicacionFinal = new Ubicacion(new Integer (request.queryParams("localidadFinalPublico")),request.queryParams("paradaFin"), new Integer (request.queryParams("alturaFinal")));
 
       return new Tramo(nombreIdentificadorDelTramo, transportePublicoTraidodeLaDB,ubicacionDestino, ubicacionFinal);
     }
@@ -245,90 +257,6 @@ public class UsuarioController  implements WithGlobalEntityManager, Transactiona
   }
 
 
-  /* TRAEMOS LA INFORMACION QUE SE CARGO EN EL FORMULARIO DE REGISTRAR TRAMO*/
-
-
-  public Response pedirDatosTramo(Request request, Response response) {
-
-   String transporte = request.queryParams("preg1");
-   System.out.println(transporte);
-   String nombreIdentificadorDelTramo = request.queryParams("nombreTramo");
-   System.out.println(nombreIdentificadorDelTramo);
-
-    if (transporte.equalsIgnoreCase("1")) {
-      System.out.println("ES UN TRANPOSRTE PUBLICO");
-      //Este es un caso particular porq lo deberias buscar en la base de datos, ya deberia estar cargado
-
-      String lineaTransporte = request.queryParams("lineaTransporte");
-      TransportePublico transportePublicoTraidodeLaDB = new TransportePublico();
-
-      Ubicacion ubicacionDestino = new Ubicacion(999,request.queryParams("paradaInicio"),999);
-      Ubicacion ubicacionFinal = new Ubicacion(999,request.queryParams("paradaFin"), 999);
-
-      Tramo traomtransportepublico = new Tramo(lineaTransporte, transportePublicoTraidodeLaDB,ubicacionDestino, ubicacionFinal);
-
-    }
-    else if (transporte.equalsIgnoreCase("2")) {
-      System.out.println("ES UN SERIVICIO CONTRATADO");
-
-
-      Ubicacion ubicacionDestino = new Ubicacion(999,request.queryParams("ubicacionInicio"),999);
-      Ubicacion ubicacionFinal = new Ubicacion(999, request.queryParams("ubicacionFinal"), 999);
-
-      //Constructor: ServicioContratado(String tipoServiciocontratado,Ubicacion ubicacionInicio,Ubicacion ubicacionFinal,Double cantidadDeCombustiblePorKM,TipoDeConsumo
-      ServicioContratado servicioContratadoCreado = new ServicioContratado(request.queryParams(request.queryParams("nameServicio")),
-          ubicacionDestino,
-          ubicacionFinal,
-          2.0,
-          new FactorDeEmision(2.0,TipoDeConsumo.DIESEL_GASOIL));
-
-      Tramo tramovehiculoparticular = new Tramo("vehiculoParticular", servicioContratadoCreado, ubicacionDestino, ubicacionFinal);
-
-    }
-
-    else if (transporte.equalsIgnoreCase("3")) {
-      System.out.println("ES UN ECOFRIENDLY");
-
-
-      Ubicacion ubicacionDestino = new Ubicacion(999,request.queryParams("ubicacionInicio"),999);
-      Ubicacion ubicacionFinal = new Ubicacion(999,request.queryParams("ubicacionFinal"), 999);
-      System.out.println(request.queryParams("ubicacionInicio"));
-      System.out.println(request.queryParams("ubicacionFinal"));
-      //Constructor: nada
-      EcoFriendly ecoFriendlyCreado = new EcoFriendly(null);
-
-      Tramo tramoEcoFriendly = new Tramo("EcoFriendly", ecoFriendlyCreado, ubicacionDestino, ubicacionFinal);
-
-
-
-    }else if (transporte.equalsIgnoreCase("4")) {
-      System.out.println("ES UN VEHICULO PARTICULAR");
-
-
-
-      String tipoVehiculo = request.queryParams("TipoTransporte");
-      String lineaVehiculo = request.queryParams("LineaTransporte");
-
-      Ubicacion ubicacionDestino = new Ubicacion(999,request.queryParams("ubicacionInicio"),999);
-      Ubicacion ubicacionFinal = new Ubicacion(999,request.queryParams("ubicacionFinal"), 999);
-
-      //Constructor: Enum->TipoCombustible , Enum-> TipotransporteParticular , double cantidadDeCombustiblePorKM,enum->TipoDeConsumo
-      VehiculoParticular vehiculoParticularCreado = new VehiculoParticular(VehiculoParticular.TipoCombustible.GNC,
-          VehiculoParticular.TipotransporteParticular.AUTO, 2.0,
-          new FactorDeEmision(2.0,TipoDeConsumo.DIESEL_GASOIL));
-
-      Tramo tramoEcoFriendly =  new Tramo("vehiculoParticular", vehiculoParticularCreado, ubicacionDestino, ubicacionFinal);
-
-
-    }
-    else{ // este es el caso ERROR !!!!! NO HACER NADA
-
-    }
-
-      response.redirect("/user/menu/registrartramo/created/menu");
-      return response;
-  }
-
 
 
   //---------------------- TRAYECTOS-----------------------------------------//
@@ -337,14 +265,49 @@ public class UsuarioController  implements WithGlobalEntityManager, Transactiona
     Long idPersona = new Long(request.session().attribute("idElementoAsociado"));
 
     Set<Tramo> tramosNoRegistradosDelUsuario = RepositorioPersona.getInstance().encontrar(idPersona).getTramosNoRegistrados();
-
     System.out.println(tramosNoRegistradosDelUsuario.toString());
+
+    UserMiembro usuarioEncontrado = buscarUsuarioEnDB(request);
+
+
+    List<Organizacion> orgsTrabajaUsuario = obtenerOrganizacionesDeUnUsuarioMiembro(usuarioEncontrado);
+    List<Sector> sectoresDeorgTrabajaUsuario = obtenerSectoresEnDondeTrabaja(orgsTrabajaUsuario, usuarioEncontrado);
+
+
+
     Map<String, Object> model = new HashMap<>();
     model.put("tramos", tramosNoRegistradosDelUsuario);
+    model.put("sectoresDeorgTrabajaUsuario", sectoresDeorgTrabajaUsuario);
+
 
     return new ModelAndView(model, "vistas_usuario/userRegistrarTrayecto.hbs");
   }
 
+  public List<Sector> obtenerSectoresEnDondeTrabaja(List<Organizacion> orgsTrabajaUsuario, UserMiembro usuario){
+      List<Sector> sectores = new ArrayList<>();
+      Set<Miembro> trabajos = usuario.getPersona_asociada().getTrabajos();
+
+      List<Long> id_sectores_trabajo_user = trabajos.stream().map(trabajo -> trabajo.getTrabajo().getId()).collect(Collectors.toList());
+
+      for (Organizacion org: orgsTrabajaUsuario){ // para cada organizacion de las que trabaja el usuario
+        for (Sector sector: org.getSectores()){ // para cada sector de las organizaciones en las que trabaja
+          if (id_sectores_trabajo_user.contains(sector.getId())){
+            sectores.add(sector);
+          }
+        }
+      }
+
+      return sectores;
+  }
+
+
+  public List<Sector> sectoresDeLasOrganizacionesQueTrabaja(List<Organizacion> organizaciones, Miembro miembroEnSector){
+
+    return organizaciones.stream().flatMap(organizacion -> organizacion.getSectores().stream()).filter(sector -> sector.getMiembros().stream().collect(Collectors.toList()).contains(miembroEnSector)).collect(Collectors.toList());
+  }
+
+  // tenemos una lista de organizaciones para las que un usuario trabaja
+  // de esa lista de organizaciones tenemos que traer para que sector trabaja ese usuario para cada organizacion
 
 
 
@@ -358,9 +321,68 @@ public class UsuarioController  implements WithGlobalEntityManager, Transactiona
     //Crear el tramo y cargarselo a un trayecto ¿A que miembro se lo agregamos, tener en cuenta esto?
     //Que la pantalla puede visualizar que organizacion pertenece el usuario y que este eliga para asi cuando se tenga que cargar
     //En la parte del servidor ya se sepa en el caso que el usuario/persona tenga varios miembros (es decir trabajos -> organizaciones
+    String cant = request.queryParams("cantidadTramosAgregados");
 
-    String name = request.queryParams("nombre");
-    System.out.println(name);
+    String nombreTrayecto = request.queryParams("nombreTrayecto");
+
+    String idSector = request.queryParams("sectorSeleccionado"); // esto todavia no esta hecho
+    System.out.println("---------------- ID SECTOR ES---------------------------------");
+    System.out.println(idSector);
+    System.out.println("-------------------------------------------------");
+
+
+
+    int cantidadTramos = Integer.parseInt(cant);
+
+
+    String[] ids = request.queryParams("idTramosAgregados").split(",");
+    Long idTramoRegistrado;
+    Set<Tramo> tramosParaTrayecto = new HashSet<>();
+    Set<Tramo> tramosSacar = new HashSet<>();
+    ArrayList<Tramo> tramosDelTrayectoFinal = new ArrayList<>();
+    int i=0;
+    UserMiembro usuarioEncontrado = buscarUsuarioEnDB(request);
+
+    tramosParaTrayecto = usuarioEncontrado.getPersona_asociada().getTramosNoRegistrados();
+
+    while(cantidadTramos>i){
+
+      idTramoRegistrado= new Long(ids[i]);
+
+      for(Tramo tramo:tramosParaTrayecto){
+
+        if (idTramoRegistrado.equals(tramo.getId())){
+          tramosDelTrayectoFinal.add(tramo);
+          Tramo tramoSacar = usuarioEncontrado.getPersona_asociada().getTramosNoRegistrados().stream().filter( t -> t.getId().equals(tramo.getId()) ).collect(Collectors.toList()).get(0);
+          tramosSacar.add(tramoSacar);
+        }
+
+      }
+      i++;
+
+
+    }
+
+
+
+
+
+
+    Ubicacion origen = tramosDelTrayectoFinal.get(0).getOrigen();
+    Ubicacion destino = tramosDelTrayectoFinal.get(cantidadTramos-1).getDestino();
+    Trayecto trayectoAPersistir = new Trayecto(origen,destino,tramosDelTrayectoFinal,nombreTrayecto);
+
+    //aca agarro cada trabajo del usuario y si en el trabajo (sector) coincide su id con el idSector, se registra el trayecto
+    for(Miembro trabajo: usuarioEncontrado.getPersona_asociada().getTrabajos()){
+      if (Long.toString(trabajo.getTrabajo().getId()).equals(idSector)){
+        trabajo.registrarTrayecto(trayectoAPersistir);
+      }
+    }
+    tramosSacar.forEach(t->usuarioEncontrado.getPersona_asociada().getTramosNoRegistrados().remove(t));
+
+    withTransaction(()->{
+      RepositorioUsuario.getInstance().actualizar(usuarioEncontrado);
+    });
 
     response.redirect("/user/menu/registrartrayecto");
     return response;
@@ -386,6 +408,7 @@ public class UsuarioController  implements WithGlobalEntityManager, Transactiona
   public ModelAndView valorcalculoHC(Request request, Response response) {
 
     Long id_org= new Long(request.queryParams("id_org"));
+    Periodo periodo = Periodo.valueOf(request.queryParams("periodo"));
 
     System.out.println("Esta es el id de la org encontrada: "+ id_org.toString());
 
@@ -400,7 +423,20 @@ public class UsuarioController  implements WithGlobalEntityManager, Transactiona
     Miembro miembraso = usuarioEncontrado.getPersona_asociada().getTrabajos().stream().filter(miembro -> miembro.getOrganizacion().getId().equals(organizacion.getId())).findFirst().get();
     Map<String, Object> model = new HashMap<>();
 
-    model.put("resultado", miembraso.ejecutarCalculadoraHc().toString());
+    Double resultado = miembraso.ejecutarCalculadoraHc();
+
+
+    // TODO ARREGLAR PARA QUE ESTA LOGICA ESTE DENTRO DEL CALCULO DE HC DE UN MIEMBRO
+
+    if(periodo == Periodo.ANUAL){
+      resultado = resultado * 365;
+    }
+    else{
+      resultado =resultado * 30;
+    }
+
+
+    model.put("resultado", resultado.toString());
     model.put("razonSocial", organizacion.getRazonSocial());
 
     return new ModelAndView(model, "vistas_usuario/resultadoUserCalculoHC.hbs");
@@ -477,7 +513,28 @@ public class UsuarioController  implements WithGlobalEntityManager, Transactiona
     return new ModelAndView(null, "vistas_usuario/userVincularASector_RESULTADO.hbs");
   }
 
+  public ModelAndView misTrayectos(Request request, Response response) {
 
+    List<Organizacion> organiazciones = buscarUsuarioEnDB(request).getPersona_asociada().getTrabajos().stream().map(miembro -> miembro.getOrganizacion()).collect(Collectors.toList());
 
+    Map<String, Object> model = new HashMap<>();
+    model.put("organizaciones", organiazciones);
+
+    return new ModelAndView(model, "vistas_usuario/userMisTrayectos.hbs");
+  }
+
+  public ModelAndView resultadomisTrayectos(Request request, Response response) {
+
+    Long id_org= new Long (request.queryParams("id_org"));
+    UserMiembro usuarioEncontrado = buscarUsuarioEnDB(request);
+
+    List<Trayecto> trayectos = usuarioEncontrado.getPersona_asociada().getTrabajos().stream().filter(miembro -> miembro.getOrganizacion().getId().equals(id_org)).flatMap(miembro->miembro.getRegistroTrayectos().stream()).collect(Collectors.toList());
+  System.out.println(trayectos.toString());
+
+  Map<String, Object> model = new HashMap<>();
+    model.put("trayectos", trayectos);
+
+    return new ModelAndView(model, "vistas_usuario/userMisTrayectosRESULTADO.hbs");
+  }
 
 }

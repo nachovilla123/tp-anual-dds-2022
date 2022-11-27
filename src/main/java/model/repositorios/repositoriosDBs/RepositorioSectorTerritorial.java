@@ -14,4 +14,7 @@ public class RepositorioSectorTerritorial extends GenericRepositoryJPA<SectorTer
     return instance;
   }
 
+  public SectorTerritorial findBySectorName(String nom){
+    return entityManager.createQuery("from SectorTerritorial where sectorTerritorial =  ?", SectorTerritorial.class).setParameter(1,nom).getSingleResult();
+  }
 }

@@ -11,13 +11,11 @@ import model.organizacion.trayecto.Trayecto;
 import model.reporte.Reporte;
 import model.repositorios.repositoriosDBs.RepositorioAgenteSectorial;
 
+import model.repositorios.repositoriosDBs.RepositorioFactorDeEmision;
 import model.repositorios.repositoriosDBs.RepositorioPersona;
 import model.repositorios.repositoriosDBs.RepositorioSectorTerritorial;
 import model.repositorios.repositoriosDBs.reposUsuarios.RepositorioUsuario;
-import model.usuario.UserAgenteSectorial;
-import model.usuario.UserMiembro;
-import model.usuario.UserOrganizacion;
-import model.usuario.Usuario;
+import model.usuario.*;
 
 import java.time.LocalDate;
 import java.util.*;
@@ -29,15 +27,46 @@ public class Bootstrap {
     // List<Usuario> usuarios = usuarios();
     // usuarios.forEach((usuario) -> RepositorioUsuario.getInstance().agregar(usuario));
     //  organizaciones().forEach((organizacion -> RepositorioDeOrganizaciones.getInstance().agregar(organizacion)));
+    factoresDeEmision();
     sectorTerritorialBsAs();
+    nicoAdministrador();
 
+  }
+
+  private static void nicoAdministrador() {
+    UserAdministrador nicolas = new UserAdministrador("nico","zxc", Usuario.Rol.ADMINISTRADOR);
+
+    RepositorioUsuario.getInstance().agregarBoostrap(nicolas);
+  }
+
+  private static void factoresDeEmision() {
+    FactorDeEmision factorDeEmision1 = new FactorDeEmision(1.0,TipoDeConsumo.DIESEL_GASOIL );
+    FactorDeEmision factorDeEmision2 = new FactorDeEmision(2.0,TipoDeConsumo.CAMION_DE_CARGA );
+    FactorDeEmision factorDeEmision3 = new FactorDeEmision(3.0,TipoDeConsumo.COMBUSTIBLE_CONSUMIDO_GASOIL);
+    FactorDeEmision factorDeEmision4 = new FactorDeEmision(4.0,TipoDeConsumo.COMBUSTIBLE_CONSUMIDO_NAFTA);
+    FactorDeEmision factorDeEmision5 = new FactorDeEmision(5.0,TipoDeConsumo.GAS_NATURAL);
+    FactorDeEmision factorDeEmision6 = new FactorDeEmision(6.0,TipoDeConsumo.UTILITARIO_LIVIANO);
+    FactorDeEmision factorDeEmision7 = new FactorDeEmision(7.0,TipoDeConsumo.ELECTRICIDAD);
+    FactorDeEmision factorDeEmision8 = new FactorDeEmision(8.0,TipoDeConsumo.DISTANCIA_MEDIA_RECORRIDA);
+    FactorDeEmision factorDeEmision9 = new FactorDeEmision(9.0,TipoDeConsumo.NAFTA);
+
+
+    RepositorioFactorDeEmision.getInstance().agregarBoostrap(factorDeEmision1);
+    RepositorioFactorDeEmision.getInstance().agregarBoostrap(factorDeEmision2);
+    RepositorioFactorDeEmision.getInstance().agregarBoostrap(factorDeEmision3);
+    RepositorioFactorDeEmision.getInstance().agregarBoostrap(factorDeEmision4);
+    RepositorioFactorDeEmision.getInstance().agregarBoostrap(factorDeEmision5);
+    RepositorioFactorDeEmision.getInstance().agregarBoostrap(factorDeEmision6);
+    RepositorioFactorDeEmision.getInstance().agregarBoostrap(factorDeEmision7);
+    RepositorioFactorDeEmision.getInstance().agregarBoostrap(factorDeEmision8);
+    RepositorioFactorDeEmision.getInstance().agregarBoostrap(factorDeEmision9);
 
   }
 
   private static void sectorTerritorialBsAs() {
 
     //SECTOR TERRITORIAL
-    SectorTerritorial sectorTerritorial = new SectorTerritorial("Buenos Aires");
+    SectorTerritorial sectorTerritorial = new SectorTerritorial("Buenos_Aires");
 
     //CREACION DE ORGANIZACIONES
     Set<Organizacion> organizaciones = new HashSet<>();
@@ -62,8 +91,8 @@ public class Bootstrap {
 
 
     //CREACION DE USUARIOS
-    Persona personaIgnacio = RepositorioPersona.getInstance().findByUsername("ignacio");
-    Persona personaPipe = RepositorioPersona.getInstance().findByUsername("pipe");
+    Persona personaIgnacio = RepositorioPersona.getInstance().findByPersonName("ignacio");
+    Persona personaPipe = RepositorioPersona.getInstance().findByPersonName("pipe");
 
 
     usuariosApple(personaIgnacio,orgApple);
@@ -161,7 +190,7 @@ public class Bootstrap {
     orgUTN.setDatosDeActividades(datosDeActividad);
 
     //REPORTES
-    Set<Reporte> reportesApple = reportesUTN();
+    List<Reporte> reportesApple = reportesUTN();
     orgUTN.setReportes(reportesApple);
 
     return orgUTN;
@@ -179,6 +208,9 @@ public class Bootstrap {
     //ORANIZACION
     Organizacion org = organizacionFactory.organizacionAppleEmpresa();
     org.setSrcImg("../../imagenes/icons_buildings/5452468_holidays_buildings_hotel_vacations.png");
+
+    //CONTACTO
+    org.setContactos(contactosApple());
 
     //SECTORES
     Sector sectorRRHH = sectorFactory.SectorRRHH();
@@ -239,7 +271,7 @@ public class Bootstrap {
     org.setDatosDeActividades(datosDeActividad);
 
     //REPORTES
-    Set<Reporte> reportesApple = reportesApple();
+    List<Reporte> reportesApple = reportesApple();
     org.setReportes(reportesApple);
 
     //PERSISTENCIA DE APPLE
@@ -252,71 +284,143 @@ public class Bootstrap {
 
   }
 
+private static  Set<Contacto> contactosApple(){
+  Contacto jorge = new Contacto("jorge@gmail.com.ar",1132658788, "Jorge");
+  Contacto matias = new Contacto("matias@gmail.com.ar",1123695736, "Matias");
+  Contacto pedro = new Contacto("pedro@gmail.com.ar", 1142874934, "Pedro");
+  Set<Contacto> contactosApple = new HashSet<>();
+  contactosApple.add(jorge);
+  contactosApple.add(matias);
+  contactosApple.add(pedro);
+  return contactosApple;
+}
 
-
-  private static Set<Reporte> reportesApple() {
+  private static List<Reporte> reportesApple() {
     ReporteFactory reporteFactory = new ReporteFactory();
 
-    Reporte reporteA = reporteFactory.reporteA();
-    reporteA.setFecha( LocalDate.of(2018,1,2));
-    reporteA.setValorTotal(reporteA.getValorTotalHc());
+    //ANUALES
+    Reporte reporteAanual = reporteFactory.reporteAanual();
+    reporteAanual.setFecha( LocalDate.of(2018,1,2));
+    reporteAanual.setValorTotal(reporteAanual.getValorTotalHc());
 
-    Reporte reporteB =reporteFactory.reporteB();
-    reporteB.setFecha( LocalDate.of(2019,1,2));
-    reporteB.setValorTotal(reporteB.getValorTotalHc());
+    Reporte reporteBanual =reporteFactory.reporteBanual();
+    reporteBanual.setFecha( LocalDate.of(2019,1,2));
+    reporteBanual.setValorTotal(reporteBanual.getValorTotalHc());
 
-    Reporte reporteC = reporteFactory.reporteC();
-    reporteC.setFecha( LocalDate.of(2020,1,2));
-    reporteC.setValorTotal(reporteC.getValorTotalHc());
+    Reporte reporteCanual = reporteFactory.reporteCanual();
+    reporteCanual.setFecha( LocalDate.of(2020,1,2));
+    reporteCanual.setValorTotal(reporteCanual.getValorTotalHc());
 
-    Reporte reporteD = reporteFactory.reporteD();
-    reporteD.setFecha( LocalDate.of(2021,1,2));
-    reporteD.setValorTotal(reporteD.getValorTotalHc());
+    Reporte reporteDanual = reporteFactory.reporteDanual();
+    reporteDanual.setFecha( LocalDate.of(2021,1,2));
+    reporteDanual.setValorTotal(reporteDanual.getValorTotalHc());
 
-    Reporte reporteE = reporteFactory.reporteE();
-    reporteE.setFecha( LocalDate.of(2022,1,2));
-    reporteE.setValorTotal(reporteE.getValorTotalHc());
+    Reporte reporteEanual = reporteFactory.reporteEanual();
+    reporteEanual.setFecha( LocalDate.of(2022,1,2));
+    reporteEanual.setValorTotal(reporteEanual.getValorTotalHc());
 
-    Set<Reporte> reportes = new HashSet<>();
-    reportes.add(reporteA);
-    reportes.add(reporteB);
-    reportes.add(reporteC);
-    reportes.add(reporteD);
-    reportes.add(reporteE);
+    //MENSUALES
+    Reporte reporteAmensual = reporteFactory.reporteAmensual();
+    reporteAmensual.setFecha( LocalDate.of(2018,6,2));
+    reporteAmensual.setValorTotal(reporteAanual.getValorTotalHc());
+
+    Reporte reporteBmensual =reporteFactory.reporteBmensual();
+    reporteBmensual.setFecha( LocalDate.of(2019,6,2));
+    reporteBmensual.setValorTotal(reporteBanual.getValorTotalHc());
+
+    Reporte reporteCmensual = reporteFactory.reporteCmensual();
+    reporteCmensual.setFecha( LocalDate.of(2020,6,2));
+    reporteCmensual.setValorTotal(reporteCanual.getValorTotalHc());
+
+    Reporte reporteDmensual = reporteFactory.reporteDmensual();
+    reporteDmensual.setFecha( LocalDate.of(2021,6,2));
+    reporteDmensual.setValorTotal(reporteDanual.getValorTotalHc());
+
+    Reporte reporteEmensual = reporteFactory.reporteEmensual();
+    reporteEmensual.setFecha( LocalDate.of(2022,6,2));
+    reporteEmensual.setValorTotal(reporteEanual.getValorTotalHc());
+
+
+    List<Reporte> reportes = new ArrayList<>();
+    reportes.add(reporteAanual);
+    reportes.add(reporteAmensual);
+
+    reportes.add(reporteBanual);
+    reportes.add(reporteBmensual);
+
+    reportes.add(reporteCanual);
+    reportes.add(reporteCmensual);
+
+    reportes.add(reporteDanual);
+    reportes.add(reporteDmensual);
+
+    reportes.add(reporteEanual);
+    reportes.add(reporteEmensual);
 
     return reportes;
   }
 
-  private static Set<Reporte> reportesUTN() {
+  private static List<Reporte> reportesUTN() {
 
     ReporteFactory reporteFactory = new ReporteFactory();
 
-    Reporte reporteA = reporteFactory.reporteA();
-    reporteA.setFecha( LocalDate.of(2018,2,3));
-    reporteA.setValorTotal(reporteA.getValorTotalHc());
+    Reporte reporteAanual = reporteFactory.reporteAanual();
+    reporteAanual.setFecha( LocalDate.of(2018,2,3));
+    reporteAanual.setValorTotal(reporteAanual.getValorTotalHc());
 
-    Reporte reporteB =reporteFactory.reporteB();
-    reporteB.setFecha( LocalDate.of(2019,2,3));
-    reporteB.setValorTotal(reporteB.getValorTotalHc());
+    Reporte reporteBanual =reporteFactory.reporteBanual();
+    reporteBanual.setFecha( LocalDate.of(2019,2,3));
+    reporteBanual.setValorTotal(reporteBanual.getValorTotalHc());
 
-    Reporte reporteC = reporteFactory.reporteC();
-    reporteC.setFecha( LocalDate.of(2020,2,3));
-    reporteC.setValorTotal(reporteC.getValorTotalHc());
+    Reporte reporteCanual = reporteFactory.reporteCanual();
+    reporteCanual.setFecha( LocalDate.of(2020,2,3));
+    reporteCanual.setValorTotal(reporteCanual.getValorTotalHc());
 
-    Reporte reporteD = reporteFactory.reporteD();
-    reporteD.setFecha( LocalDate.of(2021,2,3));
-    reporteD.setValorTotal(reporteD.getValorTotalHc());
+    Reporte reporteDanual = reporteFactory.reporteDanual();
+    reporteDanual.setFecha( LocalDate.of(2021,2,3));
+    reporteDanual.setValorTotal(reporteDanual.getValorTotalHc());
 
-    Reporte reporteE = reporteFactory.reporteE();
-    reporteE.setFecha( LocalDate.of(2022,2,3));
-    reporteE.setValorTotal(reporteE.getValorTotalHc());
+    Reporte reporteEanual = reporteFactory.reporteEanual();
+    reporteEanual.setFecha( LocalDate.of(2022,2,3));
+    reporteEanual.setValorTotal(reporteEanual.getValorTotalHc());
 
-    Set<Reporte> reportes = new HashSet<>();
-    reportes.add(reporteA);
-    reportes.add(reporteB);
-    reportes.add(reporteC);
-    reportes.add(reporteD);
-    reportes.add(reporteE);
+    //MENSUALES
+    Reporte reporteAmensual = reporteFactory.reporteAmensual();
+    reporteAmensual.setFecha( LocalDate.of(2018,6,2));
+    reporteAmensual.setValorTotal(reporteAanual.getValorTotalHc());
+
+    Reporte reporteBmensual =reporteFactory.reporteBmensual();
+    reporteBmensual.setFecha( LocalDate.of(2019,6,2));
+    reporteBmensual.setValorTotal(reporteBanual.getValorTotalHc());
+
+    Reporte reporteCmensual = reporteFactory.reporteCmensual();
+    reporteCmensual.setFecha( LocalDate.of(2020,6,2));
+    reporteCmensual.setValorTotal(reporteCanual.getValorTotalHc());
+
+    Reporte reporteDmensual = reporteFactory.reporteDmensual();
+    reporteDmensual.setFecha( LocalDate.of(2021,6,2));
+    reporteDmensual.setValorTotal(reporteDanual.getValorTotalHc());
+
+    Reporte reporteEmensual = reporteFactory.reporteEmensual();
+    reporteEmensual.setFecha( LocalDate.of(2022,6,2));
+    reporteEmensual.setValorTotal(reporteEanual.getValorTotalHc());
+
+
+    List<Reporte> reportes = new ArrayList<>();
+    reportes.add(reporteAanual);
+    reportes.add(reporteAmensual);
+
+    reportes.add(reporteBanual);
+    reportes.add(reporteBmensual);
+
+    reportes.add(reporteCanual);
+    reportes.add(reporteCmensual);
+
+    reportes.add(reporteDanual);
+    reportes.add(reporteDmensual);
+
+    reportes.add(reporteEanual);
+    reportes.add(reporteEmensual);
 
     return reportes;
   }

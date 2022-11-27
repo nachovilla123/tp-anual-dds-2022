@@ -12,7 +12,7 @@ class ContactoTest {
 
     Contacto contacto_01 = new Contacto("p@gmail.com",1155113871,"Aquiles Bailo");
     Contacto contacto_02 = new Contacto("a@hotmail.com",1155113871,"Aitor Menta");
-    Ubicacion ubicacion_01 = new Ubicacion(1, "Pedro Goyena", 2000);
+    Ubicacion ubicacion_01 = new Ubicacion( 1,"Pedro Goyena", 2000);
     Organizacion organizacion_01 = new Organizacion("SA", Organizacion.Tipo.GUBERNAMENTAL,ubicacion_01, Organizacion.Clasificacion.EMPRESA_SECTOR_SECUNDARIO);
 
 

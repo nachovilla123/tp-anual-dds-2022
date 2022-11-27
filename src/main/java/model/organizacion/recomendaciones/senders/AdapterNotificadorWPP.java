@@ -21,6 +21,7 @@ public class AdapterNotificadorWPP implements WhatsAppSender {
 
   private void efectivizarEnvio(Contacto contacto, String guia) {
     //TODO prox entregas
+    System.out.println("EL contacto es: "+contacto.getNombreDelContacto() +" cuyo NUMERO es: " + contacto.getNumeroDeContactoWPP() + "y la guia enviada es:"+ guia);
   }
 
   public List<Contacto> contactosEnElSistema() {

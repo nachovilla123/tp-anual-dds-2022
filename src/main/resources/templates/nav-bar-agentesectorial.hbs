@@ -1,27 +1,34 @@
-<!-- COPIE EL NAV VAR DE ORGANIZACION, CUANDO ESTEN HECHAS LAS RUTAS PARA EL MENU Y CERRAR SESION BORRAR ESTE COMENTARIO.-->
 
-<nav class="navbar sticky-top navbar-dark navbar-expand-lg bg-dark">
-    <div class="container">
-          <img style="width:50px" src="../../imagenes/logos_web/plantita1.png" />
-        <a class="navbar-brand" href="../admin/admin_principal.html">
-
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item pr-4">
-                    <a class="nav-link active text-white" aria-current="page" href="../menu">Menu</a><!--MANDAR AL MENU DE USUARIO-->
+    <nav id='menu'>
+            <link rel="stylesheet" type="text/css" href="../../nav_bar.css">
+            <input type='checkbox' id='responsive-menu' onclick='updatemenu()'><label></label>
+            <ul>
+                <li><img style="width:50px" src="/imagenes/logos_web/plantita1.png" /></li>
+                <li><a href="/ag/home">Home</a></li>
+                <li><a href="/ag/menu/menureportes/hctotalsectorterritorial">HC Total</a></li>
+                    </ul>
                 </li>
-                <li class="nav-item pr-4">
-                    <form action="/session/delete" method="POST">
-                        <button style="background-color:#242c2c;border-color:#242c2c" type="submit" class="nav-link active text-white">
-                            Cerrar sesion
-                        </button>
-                    </form>
+                <li><li><a href="/ag/menu/menureportes/compohcsectorterritorial">Composicion de HC</a></li>
+                    </ul>
+                </li>
+                <li><a href="/ag/menu/menureportes/evolhcsectorterritorial">Evolucion de HC</a></li>
+                <li>
+                <li><a href='/ag/menu/guiarecomendaciones'>Guía de recomendaciones</a></li>
+                <li>
+                <form action="/session/delete" method="POST">
+                <button style="background-color:black;height:57px" >Cerrar sesión</button>
+                </form>
                 </li>
             </ul>
-        </div>
-    </div>
-</nav>
+        </nav>
+
+<script>
+    function updatemenu() {
+  if (document.getElementById('responsive-menu').checked == true) {
+    document.getElementById('menu').style.borderBottomRightRadius = '0';
+    document.getElementById('menu').style.borderBottomLeftRadius = '0';
+  }else{
+    document.getElementById('menu').style.borderRadius = '0px';
+  }
+}
+</script>

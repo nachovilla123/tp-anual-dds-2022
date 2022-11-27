@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Grupo 2</title>
-    <link rel="icon" type="image/png" href="todo: icono q aparece en la pestania"/>
+     <link rel="icon" type="image/png" href="../../imagenes/logos_web/plantita1.png"/>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
 </head>
 
@@ -16,33 +16,36 @@
 
 <div style="text-align: center;">
     <h1 style="color: #000;" >REGISTRAR TRAYECTO</h1>
-    <hr/>
+    <hr>
 </div>
 
 
 <div style="margin-top: 5px;" class="container text-center">
     <div class="row">
         <div class="col">
-            <h6>1)Seleccione los tramos que tenga creados en orden</h6>
-            <h6>2)Confirme la creacion del Trayecto</h6>
-
+            <h6>1)Seleccione los tramos que tenga creados en el orden que los realiza.</h6>
+            <h6>2)Ingrese un nombre para el trayecto.</h6>
+            <h6>3)Seleccione a que organización y sector agregara el trayecto.</h6>
+            <h6>4)Confirme la creación del Trayecto.</h6>
+        <hr>
         </div>
         <div class="col">
 
             <a style="width: 250px;" type="button" class="btn btn-primary" href="../menu/registrartramo">Crear tramos</a>
             <h6>¿No tenes tramos? Crealos!</h6>
         </div>
-        <hr/>
+
     </div>
+
 
 
 
     <div style="text-align: center;">
         <h3>Seleccione los tramos:</h3>
-        <select style="margin-left: 25px; width: 250px;"   id="producto" name="producto" onchange="ShowSelected();">
-            <option value="" disabled selected>Seleccione sus tramos creados...</option>
+        <select style="margin-left: 25px; width: 250px;"   id="producto" name="producto" onchange="ShowSelected(this);">
+            <option value="" disabled selected>Selecciones Tramos para el trayecto</option>
             {{#each tramos}}
-                <option value="{{nombre}}"> {{ nombre }}   </option>
+                <option value="{{id}}"> {{ nombre }}   </option>
             {{/each}}
         </select>
     </div>
@@ -50,7 +53,7 @@
 
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    <div class="container">
+    <div class="container" >
         <!-- ACA VIENE LA PARTE DE PEDIR LAS COSAS DE LA TABLA -->
         <div class="form-group">
             <div hidden > <!-- begin esconder -->
@@ -66,8 +69,9 @@
                     <label>Entre su C&eacute;dula:</label> <br>
                     <input id="cedula" class="form-control" type="text" placeholder="Cedúla"> <br>
                 </p></div> <!-- fin esconder-->
-            <button style="margin-top: 1%;" id="adicionar" class="btn btn-success" type="button" >Agregar tramo</button>
+            <button style="margin-top: 1%;" id="adicionar" class="btn btn-success" type="button" onclick="botonAgregarTramo()">Agregar tramo</button>
         </div>
+
 
 
         <p>Tramos Seleccionados:
@@ -76,7 +80,7 @@
 
         <form action="registrartrayecto/createdtra/created" method="POST">
 
-            <input id="nombre" class="form-control" type="text" placeholder="test..."  name = "nombre"><br>
+
 
             <table  id="mytable" name="tablatrayecto" class="table table-bordered table-hover ">
                 <tr name="trloco">
@@ -85,32 +89,76 @@
                 </tr>
             </table>
 
-            <button style="width: 250px;" type="submit" class="btn btn-success" href="....//registrartrayecto">Crear Trayecto</button>
+            <div>
+
+                <input required style="width:43%;" name="nombreTrayecto" id="nombreTrayecto" placeholder="Ingrese un nombre para el trayecto">
+            </div>
+
+             <div style="text-align: center;">
+
+                    <select style="margin-top: 1%; width: 250px; width:43%"   id="sectoresYorg" name="sectoresYorg" required>
+                        <option value="" disabled selected>Seleccione la organizacion y sector a la cual desea registrar el trayecto</option>
+                        {{#each sectoresDeorgTrabajaUsuario}}
+                            <option value="{{id}}"> {{ organizacion.razonSocial }} {{ sectorDeTrabajo }}</option>
+                        {{/each}}
+                    </select>
+                </div>
+
+        <div hidden>
+            <!--estos inputs hay que ponerles un atributo para que esten pero no visibles  NO BORRAR-->
+            <input  type="text" id="sectorSeleccionado" name="sectorSeleccionado" >
+             <input  type="text" id="idTramosAgregados" name="idTramosAgregados" >
+             <input  type="number" id="cantidadTramosAgregados" name="cantidadTramosAgregados" >
+            <!--estos inputs hay que ponerles un atributo para que esten pero no visibles NO BORRAR -->
+        </div>
+            <button style="width: 43%; margin-top:1%;" type="submit" class="btn btn-success" href="....//registrartrayecto" onclick="botonCrearTrayecto()">Crear Trayecto</button>
 
         </form>
 
+
     </div>
 
+    <div hidden>
 
+    <input  type="text" id="NOMBRETRAMO" name="NOMBRETRAMO" >
 
-
-
-
+    </div>
     <hr/>
 
-    <hr>
+</div>
+
     <script>
 
+
+
+
+//$(document).ready(function() {
+//    $("#producto").change(function() {
+ //       alert($('#my-select option:selected').html());
+   // });
+//});
+
+        var i = 1;
+        var nombre;
+
+        function ShowSelected(selected){
+            nombre = selected.options[selected.selectedIndex].text;
+        } 
 
         $(document).ready(function() {
 //obtenemos el valor de los input
 
+            
+
             $('#adicionar').click(function() {
-                var nombre = document.getElementById("producto").value;
+                
+                
+                //var nombre = document.getElementById("producto").text;
+                var idSacar = document.getElementById("producto").value;
                 var apellido = document.getElementById("apellido").value;
                 var cedula = document.getElementById("cedula").value;
-                var i = 1; //contador para asignar id al boton que borrara la fila
-                var fila = '<tr name =elemento id="row' + i + '"><td name = elemento> ' + nombre + '</td><td><button type="button" name="remove" id="' + i + '" class="btn btn-danger btn_remove">Quitar</button></td></tr>'; //esto seria lo que contendria la fila
+                 //contador para asignar id al boton que borrara la fila
+                var fila = '<tr id="row' + i + '"><td> ' + nombre + '</td><td><button type="button" name="remove" id="' + i + '" class="btn btn-danger btn_remove" onclick="botonQuitarTramo('+ idSacar +')">Quitar</button></td></tr>'; //esto seria lo que contendria la fila
 
 
                 i++;
@@ -133,6 +181,8 @@
                 $("#adicionados").text("");
                 var nFilas = $("#mytable tr").length;
                 $("#adicionados").append(nFilas - 1);
+                //logica para eliminar el id del trayecto
+
             });
         });
 
@@ -152,7 +202,80 @@
                 }
             }
         }
-    </script>
+
+ var ids="";
+ var cantidadTramos = 0;
+function botonAgregarTramo(){
+         var id = document.getElementById("producto").value;
+         //alert(id);
+         /* Para obtener el texto */
+         var combo = document.getElementById("producto");
+         var selected = combo.options[combo.selectedIndex].text;
+         //alert(selected);
+            if(cantidadTramos==0){
+                ids = id
+            }else{
+                 ids = ids + ","+ id
+            }
+
+          cantidadTramos++;
+          //alert(ids);
+
+          document.getElementById("idTramosAgregados").value =ids;
+
+          document.getElementById("cantidadTramosAgregados").value =cantidadTramos;
+     }
+
+      function generarCamposTransporteParticular(id,nombreTramo) {
+
+         return `<div class="form-group row mb-3">
+                 <div class="col">
+                 <input type="text" class="form-control" name="codigo` + id + `" placeholder="` + nombreTramo + `" required>
+                 </div>
+                 </div>`
+ }
+
+function botonQuitarTramo(id){
+       //var unId = "";
+       //for(int i=0,ids[i]!='\0',i++ ){
+         // unId = unId + ids[i]
+       //    if (ids[i+1] == ','){
+     //           if (unId == id){
+   //             ids =
+  //              }
+ //               unId = ""
+//           }
+//       }
+                cantidadTramos--;
+                ids = ids.replace(id,"");
+                ids = ids.replace(",,",",");
+
+                if(ids[0]==','){
+                ids = ids.replace(ids[0],"");
+                }
+
+                document.getElementById("idTramosAgregados").value =ids;
+                document.getElementById("cantidadTramosAgregados").value =cantidadTramos;
+}
+
+function botonCrearTrayecto(){
+
+    var idSectorIngresado = document.getElementById("sectoresYorg").value;
+    document.getElementById("sectorSeleccionado").value = idSectorIngresado;
+
+    ids = ids.replace(",,",",");
+
+    if(ids[0]==','){
+       ids = ids.replace(ids[0],"");
+    }
+    document.getElementById("idTramosAgregados").value =ids;
+}
+
+
+
+
+ </script>
+
 
 
 

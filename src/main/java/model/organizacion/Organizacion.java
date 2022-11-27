@@ -1,5 +1,6 @@
 package model.organizacion;
 
+//import com.sun.org.apache.regexp.internal.RE;
 import model.agentesSectoriales.SectorTerritorial;
 import model.implementacionCSV.DatoDeActividad;
 import model.implementacionCSV.HuellaDeCarbono;
@@ -15,10 +16,7 @@ import model.usuario.Usuario;
 import javax.persistence.*;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -57,7 +55,8 @@ public class Organizacion {
   @JoinColumn(name = "id_organizacion")
   private Set<Sector> sectores = new HashSet<Sector>();
 
-  @Transient
+  @OneToMany(cascade = CascadeType.ALL)
+  @JoinColumn(name = "id_organizacion")
   private Set<Contacto> contactos = new HashSet<Contacto>();
 
   @OneToMany(cascade = CascadeType.ALL)
@@ -67,11 +66,10 @@ public class Organizacion {
   @OneToMany(cascade = CascadeType.ALL)
   @JoinColumn(name = "id_organizacion")
   @OrderColumn
-  private Set<Reporte> reportes = new HashSet<>();
+  private List<Reporte> reportes = new ArrayList<>();
 
   @Column
   String srcImg;
-
 
   public enum Clasificacion {
     MINISTERIO, UNIVERSIDAD, ESCUELA, EMPRESA_SECTOR_PRIMARIO, EMPRESA_SECTOR_SECUNDARIO
@@ -107,6 +105,21 @@ public class Organizacion {
     this.srcImg = srcImg;
   }
 
+  public Organizacion(String razonSocial,
+                      Tipo tipoDeOrg,
+                      Ubicacion ubicacion,
+                      Clasificacion empresaSectorSecundario,
+                      String srcImg,
+                      Set<Sector> sectores
+  ) {
+    this.razonSocial = razonSocial;
+    this.tipoDeOrganizacion = tipoDeOrg;
+    this.ubicacionGeografica = ubicacion;
+    this.clasificacion = empresaSectorSecundario;
+    this.srcImg = srcImg;
+    this.sectores = sectores;
+  }
+
 
   public Organizacion() {
   }
@@ -118,6 +131,9 @@ public class Organizacion {
   }
 
 
+  private void agregarDatosDeActividades(List<DatoDeActividad> datos) {
+     this.datosDeActividades.addAll(datos);
+  }
   private List<DatoDeActividad> getDatosDeActividades(RepositorioDatosDeActividad repositorioDatosDeActividad) {
     return repositorioDatosDeActividad.getDatosDeActividadByOrganizacion(this.id);
   }
@@ -191,9 +207,14 @@ public class Organizacion {
   }
 
   //---- reportes
-  public List<Reporte> getReportes(){
-    return RepositorioReporte.getInstance().getReportesByOrganizacion(this.getId());
+  public List<Reporte> obtenerReportes(LocalDate unaFecha,Periodo periodo){
+
+    return this.getReportes().stream()
+              .filter(reporte->reporte.perteneceAPeriodo(periodo))
+              .filter(reporte -> reporte.sonDeLaMismaFecha(unaFecha))
+              .collect(Collectors.toList());
   }
+
   public void agregarReporte(RepositorioReporte repositorioReportes,Periodo periodo){
 
     LocalDate fechaActual = LocalDate.now();
@@ -202,7 +223,7 @@ public class Organizacion {
     HuellaDeCarbono daGenerales = new HuellaDeCarbono(this.calculodeHCActividadesGenerales(periodo,fechaActual));
     HuellaDeCarbono daTransporte = new HuellaDeCarbono(this.calculoHcSectores(periodo));
 
-    Reporte reporteAguardar = new Reporte(daGenerales,daTransporte);
+    Reporte reporteAguardar = new Reporte(daGenerales,daTransporte,periodo);
 
     repositorioReportes.agregar(reporteAguardar);
     this.reportes.add(reporteAguardar);
@@ -213,6 +234,11 @@ public class Organizacion {
     return  RepositorioReporte.getInstance().getReportesByOrganizacion(this.getId()).get(0);
   }
 
+  public List<Reporte> obtenerReportes(Periodo periodo) {
+    return this.getReportes().stream()
+        .filter(reporte->reporte.perteneceAPeriodo(periodo))
+        .collect(Collectors.toList());
+  }
 
 
 

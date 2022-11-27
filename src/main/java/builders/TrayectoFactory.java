@@ -12,8 +12,8 @@ public class TrayectoFactory {
 
   private List<Tramo> tramos = new ArrayList<>();
 
-  private Trayecto generarTrayecto(Ubicacion pi, Ubicacion pf, List<Tramo> tramos) {
-    return new Trayecto(pi, pf, tramos);
+  private Trayecto generarTrayecto(Ubicacion pi, Ubicacion pf, List<Tramo> tramos, String nombre) {
+    return new Trayecto(pi, pf, tramos,nombre);
   }
 
   //--------------- ALGUNAS UBICACIONES --------------- //
@@ -34,7 +34,7 @@ public class TrayectoFactory {
 
     List<Tramo> tramos = tramoFactory.get3TramosCreados();
 
-    return generarTrayecto(ubicacionPedroGoyena, ubicacionMozart, tramos);
+    return generarTrayecto(ubicacionPedroGoyena, ubicacionMozart, tramos, "TrayectoTest");
   }
 
   //Fijarse las ubicaciones del trayecto
@@ -42,7 +42,7 @@ public class TrayectoFactory {
 
     List<Tramo> tramos = tramoFactory.get2TramosCreados();
 
-    return generarTrayecto(ubicacionPedroGoyena, ubicacionMozart, tramos);
+    return generarTrayecto(ubicacionPedroGoyena, ubicacionMozart, tramos, "TraycetoTest2");
   }
 
 }

@@ -36,7 +36,6 @@ public class DatoDeActividad extends PersistentEntity {
     this.valorConsumo = valorConsumo;
     this.periodo = periodo;
     this.periodoImputacion = periodoImputacion;
-
   }
 
   public DatoDeActividad(){}

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grupo 2</title>
+     <link rel="icon" type="image/png" href="../../imagenes/logos_web/plantita1.png"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="../../tablaVerMisTramos.css">
+    <link rel="stylesheet" type="text/css" href="/nav_bar.css">
+</head>
+
+<body class = "d-flex flex-column min-vh-100">
+
+
+{{>user_nav-bar.hbs}}
+
+<div>
+    <div style="text-align: center ;" class="form-group mt-3" style="width: 500px ">
+        <h1>SELECCIONAR ORGANIZACION PARA VER LOS TRAYECTOS</h1>
+        <hr>
+
+        <form action="./misTrayectosRESULTADO" method="GET">
+            <select name="id_org"  style="width:230px ;" class="custom-select" required>
+                {{#each organizaciones}}
+                    <option value={{id}}> {{razonSocial}} </option>
+                {{/each}}
+            </select>
+
+            <input type="submit" value="Seleccionar organizacion">
+
+        </form>
+
+
+    </div>
+</div>
+
+
+</body>
+</html>

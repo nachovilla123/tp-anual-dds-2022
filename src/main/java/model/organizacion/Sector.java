@@ -30,17 +30,23 @@ public class Sector {
   @OneToMany(mappedBy = "trabajo",cascade = CascadeType.ALL)
   public Set<Miembro> miembros = new HashSet<Miembro>();
 
-  @OneToMany(cascade = CascadeType.ALL)
-  @JoinColumn(name = "id_sector_en_espera")
+  @OneToMany(mappedBy = "sectorAvincular",cascade = CascadeType.ALL)
   public Set<SolicitudDeVinculacion> trabajadoresEnEspera = new HashSet<>();
 
   @OneToOne(cascade = CascadeType.MERGE)
   @JoinColumn(name = "id_organizacion")
   public Organizacion organizacion;
 
+
+
   public Sector(Set<Miembro> miembros , SectorDeTrabajo sectorDeTrabajo) {
     this.miembros = miembros;
     this.sectorDeTrabajo = sectorDeTrabajo;
+
+  }
+
+  public Sector(SectorDeTrabajo sector){
+    this.sectorDeTrabajo = sector;
   }
 
   public Sector() {
@@ -52,7 +58,14 @@ public class Sector {
   public enum SectorDeTrabajo {
     ADMINSTRACION,
     CONTADURIA,
-    RRHH
+    RRHH,
+    FINANZAS,
+    COMERCIAL,
+    MARKETING,
+    LOGÍSTICA,
+    IT,
+    DIRECTIVO
+
   }
   //------------- CODIGO -------------//
 
@@ -60,6 +73,7 @@ public class Sector {
   public void aceptarVinculacionTodosLosMiembro() {
     this.trabajadoresEnEspera.forEach(solicitud -> solicitud.aceptar());
   }
+
 
 
   public void agregarAlistaDeEspera(SolicitudDeVinculacion solicitudes) {

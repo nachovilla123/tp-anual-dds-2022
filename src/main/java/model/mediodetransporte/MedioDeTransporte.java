@@ -21,7 +21,7 @@ import java.io.IOException;
 public abstract class MedioDeTransporte extends PersistentEntity {
 
 
-  @ManyToOne(cascade = CascadeType.ALL)
+  @ManyToOne(cascade = CascadeType.MERGE)
   public FactorDeEmision factorDeEmision;
 
   public abstract Boolean esCompartible();

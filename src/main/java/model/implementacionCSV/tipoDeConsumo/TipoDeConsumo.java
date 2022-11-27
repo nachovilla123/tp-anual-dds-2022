@@ -8,8 +8,6 @@ import lombok.Getter;
 
 import javax.persistence.*;
 
-@Getter
-
 
 public enum TipoDeConsumo {
 
@@ -27,7 +25,6 @@ public enum TipoDeConsumo {
   private Unidad unidad;
 
   private Actividad actividadConsumo;
-
 
   private Alcance alcanceConsumo;
 

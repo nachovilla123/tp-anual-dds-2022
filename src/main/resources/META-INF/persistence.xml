@@ -13,9 +13,11 @@
         <class>model.organizacion.trayecto.Ubicacion</class>
         <class>model.organizacion.trayecto.Trayecto</class>
         <class>model.organizacion.trayecto.Tramo</class>
+        <class>model.organizacion.SolicitudDeVinculacion</class>
         <class>model.agentesSectoriales.SectorTerritorial</class>
         <class>model.reporte.Reporte</class>
         <class>model.usuario.Usuario</class>
+        <class>model.organizacion.Contacto</class>
 
         <class>model.mediodetransporte.MedioDeTransporte</class>
         <class>model.mediodetransporte.EcoFriendly</class>

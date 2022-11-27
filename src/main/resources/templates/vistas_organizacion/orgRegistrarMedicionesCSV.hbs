@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grupo 2</title>
+     <link rel="icon" type="image/png" href="../../imagenes/logos_web/plantita1.png"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+</head>
+
+
+<body class = "d-flex flex-column min-vh-100">
+
+{{>user_nav-bar.hbs}}
+
+      <div style="text-align:center;">
+
+        <div style="margin:50px;" > <h1>REGISTRAR MEDICIONES</h1></div>
+        <hr>
+
+
+          <div style="margin:50px;"><h4>Si desea cargar una medicion en particular complete el formulario:</h4></div>
+
+          <form   action="registrarmedicionesFORMULARIO" method="POST"  >
+
+
+              <div>
+                  <button style="width:300px;margin-top: 50px;" type="submit" class="btn btn-success">Enviar</button>
+              </div>
+
+          </form>
+
+
+        <div style="margin:50px;"><h4>Seleccione su archivo CSV:</h4></div>
+
+       <form   action="registrarmedicionesCSV" method="POST"  >
+
+              <input style="width:500px;" type="file" name="archivoCSV">
+
+               <div>
+               <button style="width:300px;margin-top: 50px;" type="submit" class="btn btn-success">Enviar</button>
+               </div>
+
+              </form>
+
+      </div>
+
+</body>

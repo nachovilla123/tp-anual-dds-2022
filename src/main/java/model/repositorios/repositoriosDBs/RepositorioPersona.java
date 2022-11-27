@@ -2,11 +2,6 @@ package model.repositorios.repositoriosDBs;
 
 
 import model.organizacion.Persona;
-import model.reporte.Reporte;
-import model.usuario.Usuario;
-
-import java.util.List;
-import java.util.Optional;
 
 public class RepositorioPersona extends GenericRepositoryJPA<Persona>{
 
@@ -21,7 +16,7 @@ public class RepositorioPersona extends GenericRepositoryJPA<Persona>{
     return instance;
   }
 
-  public Persona findByUsername(String nom){
+  public Persona findByPersonName(String nom){
     return entityManager.createQuery("from Persona where nombre =  ?", Persona.class).setParameter(1,nom).getSingleResult();
   }
 }

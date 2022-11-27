@@ -1,6 +1,7 @@
 package controllers;
 import model.organizacion.Organizacion;
 import model.organizacion.Persona;
+import model.organizacion.Sector;
 import model.organizacion.trayecto.Ubicacion;
 import model.repositorios.repositoriosDBs.RepositorioDeOrganizaciones;
 import model.repositorios.repositoriosDBs.RepositorioPersona;
@@ -11,13 +12,11 @@ import model.usuario.Usuario;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
-import java.util.ArrayList;
+
+import java.util.*;
+
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 import org.uqbarproject.jpa.java8.extras.transaction.TransactionalOps;
-
-import java.util.List;
-
-
 
 
 public class HomeController  implements WithGlobalEntityManager, TransactionalOps{
@@ -30,7 +29,28 @@ public class HomeController  implements WithGlobalEntityManager, TransactionalOp
   }
 
   public ModelAndView guiaDeRecomendaciones(Request request, Response response) {
-    return new ModelAndView(null, "vistas_generales/guia_de_recomendaciones.hbs");
+
+   String rol = request.session().attribute("rol");
+
+   Map<String, Object> model = new HashMap<>();
+
+    if (rol.equals("ORGANIZACION")) {
+
+      model.put("org", 1);
+
+    } else if (rol.equals("MIEMBRO")) {
+
+      model.put("miembro", 1);
+
+    }else if (rol.equals("AGENTE_SECTORIAL")){
+
+      model.put("agente", 1);
+    }else if (rol.equals("ADMINISTRADOR")){
+
+      model.put("admin", 1);
+    }
+
+    return new ModelAndView(model, "vistas_generales/guia_de_recomendaciones.hbs");
   }
 
   public ModelAndView registrarUsuario(Request request, Response response) {
@@ -72,15 +92,41 @@ public class HomeController  implements WithGlobalEntityManager, TransactionalOp
 
   private Organizacion crearOrganizacion(Request request) {
 
-    Ubicacion ubicacionOrg = new Ubicacion(999,request.queryParams("ubicacionOrg"),999);
+    Ubicacion ubicacionOrg = new Ubicacion(new Integer (request.queryParams("localidadOrg")),request.queryParams("ubicacionOrg"), new Integer(request.queryParams("alturaOrg")));
 
     Organizacion.Clasificacion clasificacionOrg = Organizacion.Clasificacion.values()[Integer.parseInt(request.queryParams("clasificacionOrg"))];
 
     Organizacion.Tipo tipoOrg = Organizacion.Tipo.values()[Integer.parseInt(request.queryParams("tipoOrg"))];
 
+    String imagenOrg = this.generadorDeImagen();
 
+    Set<Sector> sectores = this.generadorSectores();
 
-    return  new Organizacion(request.queryParams("razonSocial"),tipoOrg,ubicacionOrg,clasificacionOrg,generadorDeImagen());
+    return  new Organizacion(request.queryParams("razonSocial"),tipoOrg,ubicacionOrg,clasificacionOrg,imagenOrg,sectores);
+  }
+
+  private Set<Sector> generadorSectores(){
+    Set<Sector> sectores = new HashSet<Sector>();
+
+    Sector sector1 = new Sector(Sector.SectorDeTrabajo.ADMINSTRACION);
+    Sector sector2 = new Sector(Sector.SectorDeTrabajo.CONTADURIA);
+    Sector sector3 = new Sector(Sector.SectorDeTrabajo.RRHH);
+    Sector sector4 = new Sector(Sector.SectorDeTrabajo.COMERCIAL);
+    Sector sector5 = new Sector(Sector.SectorDeTrabajo.MARKETING);
+    Sector sector6 = new Sector(Sector.SectorDeTrabajo.LOGÍSTICA);
+    Sector sector7 = new Sector(Sector.SectorDeTrabajo.IT);
+    Sector sector8 = new Sector(Sector.SectorDeTrabajo.DIRECTIVO);
+
+    sectores.add(sector1);
+    sectores.add(sector2);
+    sectores.add(sector3);
+    sectores.add(sector4);
+    sectores.add(sector5);
+    sectores.add(sector6);
+    sectores.add(sector7);
+    sectores.add(sector8);
+
+    return sectores;
   }
 
   private String generadorDeImagen(){

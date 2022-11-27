@@ -1,23 +1,37 @@
-
-
-<nav class="navbar sticky-top navbar-dark navbar-expand-lg bg-dark">
-    <div class="container">
-          <img style="width:50px" src="../../imagenes/logos_web/plantita1.png" />
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item pr-4">
-                    <a class="nav-link active text-white" aria-current="page" href="../menu">Menu</a>
-                </li>
-                <li class="nav-item pr-4">
-                  <form action="/session/delete" method="POST">
-                     <button style="background-color:#242c2c;border-color:#242c2c" type="submit" class="nav-link active text-white">
-                        Cerrar sesion
-                     </button>
-                   </form>
-                </li>
-        </div>
-    </div>
+<nav id='menu'>
+  <link rel="stylesheet" type="text/css" href="../../nav_bar.css">
+  <input type='checkbox' id='responsive-menu' onclick='updatemenu()'><label></label>
+  <ul>
+      <li><img style="width:50px" src="/imagenes/logos_web/plantita1.png" /></li>
+      <li><a href="/org/home">Home</a></li>
+      <li><a href="/org/menu/calculoHC">Calculadora HC</a></li>
+      <li><a href="/org/menu/guiarecomendaciones">Guía de recomendaciones</a></li>
+      <li><a class='dropdown-arrow' >Mi organizacion</a>
+       <ul class='sub-menus'>
+        <li><a href="/org/menu/mismiembros">Mis miembros</a></li>
+        <li><a href="/org/menu/solicitudesdevinculacion">Aceptar vinculaciones</a></li>
+          <li><a href="/org/menu/missectores">Mis sectores</a></li>
+      </ul>
+    </li>
+    <li><a href="/org/menu/registrarmediciones">Registrar mediciones</a></li>
+    <li><a href="/org/menu/menureportes">Reportes</a></li>
+    <li>
+    <form action="/session/delete" method="POST">
+    <button style="background-color:black;height:57px" >Cerrar sesión</button>
+    </form>
+    </li>
+  </ul>
 </nav>
+
+
+<script>
+    function updatemenu() {
+  if (document.getElementById('responsive-menu').checked == true) {
+    document.getElementById('menu').style.borderBottomRightRadius = '0';
+    document.getElementById('menu').style.borderBottomLeftRadius = '0';
+  }else{
+    document.getElementById('menu').style.borderRadius = '0px';
+  }
+}
+</script>
+

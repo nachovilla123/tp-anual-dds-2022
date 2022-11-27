@@ -15,11 +15,10 @@ import java.util.stream.Collectors;
 public class RepositorioDatosDeActividadCSV implements RepositorioDA {
 
   private GestorCSV gestorCSV;
-  private RepositorioFE repoFE;
 
-  public RepositorioDatosDeActividadCSV(String razonSocial,RepositorioFE repositorioFE) {
+
+  public RepositorioDatosDeActividadCSV(String razonSocial) {
     this.gestorCSV = new GestorCSV(this.crearPath(razonSocial));
-    this.repoFE = repositorioFE;
   }
 
   @Override
@@ -35,7 +34,6 @@ public class RepositorioDatosDeActividadCSV implements RepositorioDA {
       Periodo periodo = Periodo.valueOf(datoCSV[2]);
       LocalDate periodoImputacion = periodo.toLocalDate(datoCSV[3]);
 
-      //TODO
       FactorDeEmision ultimoFactorAsociado = RepositorioFactorDeEmision.getInstance().obtenerPorTipoDeConsumo(tipoConsumo);
 
       DatoDeActividad dato = new DatoDeActividad(ultimoFactorAsociado, valorConsumo, periodo, periodoImputacion);
@@ -52,7 +50,7 @@ public class RepositorioDatosDeActividadCSV implements RepositorioDA {
         .collect(Collectors.toList());
   }
 
-  private String crearPath(String razonSocial) {
+  public String crearPath(String razonSocial) {
     return "./src/main/resources/archivosCSV/"
         .concat(razonSocial + ".csv"); // o  "./src/main/"+razonSocial + ".csv"
   }

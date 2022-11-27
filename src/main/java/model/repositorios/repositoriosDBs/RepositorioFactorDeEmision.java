@@ -2,6 +2,7 @@ package model.repositorios.repositoriosDBs;
 
 import model.implementacionCSV.FactorDeEmision;
 import model.implementacionCSV.tipoDeConsumo.TipoDeConsumo;
+import model.organizacion.Persona;
 
 import java.util.List;
 
@@ -21,6 +22,7 @@ public class RepositorioFactorDeEmision extends GenericRepositoryJPA<FactorDeEmi
 
   //TODO
   public FactorDeEmision obtenerPorTipoDeConsumo(TipoDeConsumo tipoConsumo) {
-    return  null;
+    return entityManager.createQuery("from FactorDeEmision where tipoDeConsumo =  ?", FactorDeEmision.class).setParameter(1,tipoConsumo).getResultList().get(0);
+
   }
 }

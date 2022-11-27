@@ -11,8 +11,8 @@ public class EjemploDeUso {
 
     System.out.println("ingrese dos ubicaciones para calcular su distancia");
 
-    Ubicacion origen = new Ubicacion(1, "maipu", 100);
-    Ubicacion destino = new Ubicacion(456, "O'Higgins", 200);
+    Ubicacion origen = new Ubicacion( 1,"maipu", 100);
+    Ubicacion destino = new Ubicacion( 1,"O'Higgins", 200);
 
     Distancia distDevuelta = ServicioGeoDds.instancia()
         .distanciaEntreLasUbicaciones(origen, destino);

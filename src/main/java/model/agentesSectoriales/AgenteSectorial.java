@@ -50,28 +50,10 @@ public class AgenteSectorial extends PersistentEntity { // nace x TPA3
         return sectorTerritorialAsignado.calculoHc(periodo,fecha);
     }
 
-    public List<Reporte> verUltimosReportesComposicion(){
 
-        return sectorTerritorialAsignado.obtenerOrganizaciones().stream().map((organizacion -> organizacion.verUltimoReporte())).collect(Collectors.toList());
+/*
+    public Double calcularHc(){
+        return this.sectorTerritorialAsignado.calculoHc();
     }
-
-    //PARA COMPOSICION DE HC
-    public Map<String, Object> composicionHc(){
-
-        Double valorTramosHc = this.verUltimosReportesComposicion().stream().mapToDouble(reporte->reporte.getActividadesGenerales().valorEnEnKilogramos()).sum();
-        Double valorDAHc =  this.verUltimosReportesComposicion().stream().mapToDouble(reporte->reporte.getTramos().valorEnEnKilogramos()).sum();
-
-        Map<String, Object> composicionHc = new HashMap<>();
-        composicionHc.put("valorDeTramos", valorTramosHc);
-        composicionHc.put("valorDA",valorDAHc);
-
-        return composicionHc;
-    }
-
-    //PARA LA EVOLUCION
-    public List<Reporte>obtenerReportesEvolucion(){
-
-        return sectorTerritorialAsignado.obtenerReportesDeUnSectorT();
-    }
-
+*/
 }

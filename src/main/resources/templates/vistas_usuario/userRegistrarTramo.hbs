@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mi Impacto Ambiental</title>
-    <link rel="icon" type="image/png" href="todo: icono q aparece en la pestania"/>
+     <link rel="icon" type="image/png" href="../../imagenes/logos_web/plantita1.png"/>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
 </head>
 
@@ -40,43 +40,33 @@
         <div class="row">
           <div class="col">
 
-            <div hidden>
-            <li style="list-style:none;">
-                <input type="radio" name="preg1" value="1" onclick="activarElementosDelTransportePublico()"/> <strong>TRANSPORTE PUBLICO</strong>
-            </li>
+            <div>
+                <li style="list-style:none;">
+                    <input type="radio" name="preg1" value="1" onclick="activarElementosDelTransportePublico()"/> <strong>TRANSPORTE PUBLICO</strong>
+                </li>
 
-            <div style="margin: 10px;">
-            <select id="elemTransportePublico1" placeholder="Seleccione Tipo Transporte" disabled="" class="custom-select" name="TipoTransporte"  required>
-                <!-- todo: hacer un get de paradas y desplegarlas -->
-                <option disabled value="">Seleccione Tipo Transporte</option>
-                <option value="FERROCARRIL">FERROCARRIL</option>
-                <option value="SUBTERRANEO">SUBTERRANEO</option>
-                <option value="COLECTIVO">COLECTIVO</option>
-            </select>
-            </div>
+                <div style="margin: 10px;">
+                    <select id="elemTransportePublico1" placeholder="Seleccione Tipo Transporte" disabled="" class="custom-select" name="TipoTransporte"  required>
+                        <!-- todo: hacer un get de paradas y desplegarlas -->
+                        <option disabled value="">Seleccione Tipo Transporte</option>
+                        <option value="FERROCARRIL">FERROCARRIL</option>
+                        <option value="SUBTERRANEO">SUBTERRANEO</option>
+                        <option value="COLECTIVO">COLECTIVO</option>
+                    </select>
+                </div>
 
-            <div style="margin: 10px;">
-            <select id="elemTransportePublico2" disabled="" class="custom-select" name="LineaTransporte"    required>
-                <!-- todo: hacer un get de linea y desplegarlas -->
-                <option value="">Seleccione Linea...</option>
-            </select>
-            </div>
+                <div style="margin: 10px;">
+                <input id="elemTransportePublico2" placeholder="Ingrese Linea Transporte" disabled="" class="custom-select" name="LineaTransporte"    required>
+                </div>
 
-            <div style="margin: 10px;">
-            <select id="elemTransportePublico3" disabled=""  class="custom-select" name="ParadaInicio"  required>
-                <!-- todo: hacer un get de paradas y desplegarlas -->
-                <option value="">Seleccione Parada Fin...</option>
-            </select>
-            </div>
+                <div style="margin: 10px;">
+                    <input id="elemTransportePublico3" placeholder="Ingrese Ubicacion Inicial" disabled=""  class="custom-select" name="ParadaInicio"  required>
+                </div>
 
-            <div style="margin: 10px;">
-            <select id="elemTransportePublico4" disabled="" class="custom-select" name="ParadaFin"   required>
-                <!-- todo: hacer un get de paradas y desplegarlas -->
-                <option value="">Seleccione Parada Fin...</option>
-            </select>
+                <div style="margin: 10px;">
+                    <input id="elemTransportePublico4" placeholder="Ingrese Ubicacion Final" disabled="" class="custom-select" name="ParadaFin"   required>
+                </div>
             </div>
-            </div>
-
         </div>
 
 
@@ -91,16 +81,34 @@
             </div>
 
             <div style="margin: 10px;">
-                <input id="elemServicioContratado2" disabled="" class="test" placeholder="Ingrese Ubicacion Inicio del Tramo" type="text" id="name" name="ubicacionInicio"  required
+                <input id="elemServicioContratado2" disabled="" class="test" placeholder="Ingrese Ubicacion Inicio del Tramo" type="text" id="name" name="ubicacionInicioServicio"  required
                 maxlength="25" size="25" style="width: 250px ">
             </div>
 
             <div style="margin: 10px;">
-                <input id="elemServicioContratado3" disabled="" placeholder="Ingrese Ubicacion Final del Tramo" type="text" id="name" name="ubicacionFinal"  required
+                <input  id="elemServicioContratado3" disabled=""  placeholder="Ingrese la altura inicial" type="number" id="name" name="alturaInicialServicio"  required
                 maxlength="25" size="25" style="width: 250px ">
             </div>
 
+            <div style="margin: 10px;">
+                <input  id="elemServicioContratado4" disabled=""  placeholder="Ingrese la localidad inicial" type="number" id="name" name="localidadInicialServicio"  required
+                maxlength="25" size="25" style="width: 250px ">
+            </div>
 
+            <div style="margin: 10px;">
+                <input id="elemServicioContratado5" disabled="" placeholder="Ingrese Ubicacion Final del Tramo" type="text" id="name" name="ubicacionFinalServicio"  required
+                maxlength="25" size="25" style="width: 250px ">
+            </div>
+
+            <div style="margin: 10px;">
+                <input  id="elemServicioContratado6" disabled=""  placeholder="Ingrese la altura final" type="number" id="name" name="alturaFinalServicio"  required
+                maxlength="25" size="25" style="width: 250px ">
+            </div>
+
+            <div style="margin: 10px;">
+                <input  id="elemServicioContratado7" disabled=""  placeholder="Ingrese la localidad final" type="number" id="name" name="localidadFinalServicio"  required
+                maxlength="25" size="25" style="width: 250px ">
+            </div>
 
           </div>
 
@@ -112,15 +120,34 @@
             </li>
 
             <div style="margin: 10px;">
-                <input id="elemEcoFriendly1" disabled="" placeholder="Ingrese Ubicacion Inicio del Tramo" type="text" id="name" name="ubicacionInicio"  required
+                <input id="elemEcoFriendly1" disabled="" placeholder="Ingrese Ubicacion Inicio del Tramo" type="text" id="name" name="ubicacionInicioEco"  required
+                maxlength="25" size="25" style="width: 250px ">
+            </div>
+
+           <div style="margin: 10px;">
+                <input id="elemEcoFriendly2" disabled="" placeholder="Ingrese la altura inicial" type="number" id="name" name="alturaInicialEco"  required
+                maxlength="25" size="25" style="width: 250px ">
+            </div>
+
+           <div style="margin: 10px;">
+                <input id="elemEcoFriendly3" disabled="" placeholder="Ingrese la localidad inicial" type="number" id="name" name="localidadInicialEco"  required
                 maxlength="25" size="25" style="width: 250px ">
             </div>
 
             <div style="margin: 10px;">
-                <input  id="elemEcoFriendly2" disabled=""  placeholder="Ingrese Ubicacion Final del Tramo" type="text" id="name" name="ubicacionFinal"  required
+                <input  id="elemEcoFriendly4" disabled=""  placeholder="Ingrese Ubicacion Final del Tramo" type="text" id="name" name="ubicacionFinalEco"  required
                 maxlength="25" size="25" style="width: 250px ">
             </div>
 
+            <div style="margin: 10px;">
+                <input  id="elemEcoFriendly5" disabled=""  placeholder="Ingrese la altura inicial" type="number" id="name" name="alturaFinalEco"  required
+                maxlength="25" size="25" style="width: 250px ">
+            </div>
+
+           <div style="margin: 10px;">
+                <input id="elemEcoFriendly6" disabled="" placeholder="Ingrese la altura final" type="number" id="name" name="localidadFinalEco"  required
+                maxlength="25" size="25" style="width: 250px ">
+            </div>
 
           </div>
 
@@ -134,7 +161,7 @@
 
             <div class="elementosDelVehiculoParticular">
             <div style="margin: 10px;">
-            <select id="elemVehiculoParticular1" disabled="" class="custom-select" name="TipoTransporte"    required>
+            <select id="elemVehiculoParticular1" disabled="" class="custom-select" name="tipoVehiculo"    required>
                 <!-- todo: hacer un get de paradas y desplegarlas -->
                 <option  value="">Seleccione Tipo Vehiculo...</option>
                 <option  value="MOTO">MOTO</option>
@@ -145,7 +172,7 @@
             </div>
 
             <div style="margin: 10px;">
-            <select id="elemVehiculoParticular2" disabled="" class="custom-select" name="LineaTransporte"   required>
+            <select id="elemVehiculoParticular2" disabled="" class="custom-select" name="combustibleVehiculo"   required>
                 <!-- todo: hacer un get de linea y desplegarlas -->
                 <option disabled value="">Seleccione combustible utilizado</option>
                 <option  value="GNC">GNC</option>
@@ -156,22 +183,35 @@
             </select>
             </div>
 
-
-
-
-
-
             <div style="margin: 10px;">
-                <input id="elemVehiculoParticular3" disabled="" placeholder="Ingrese Ubicacion Inicio del Tramo" type="text" id="name" name="ubicacionInicio"  required
+                <input id="elemVehiculoParticular3" disabled="" placeholder="Ingrese Ubicacion Inicio del Tramo" type="text" id="name" name="ubicacionInicioVehiculo"  required
                 maxlength="25" size="25" style="width: 250px ">
             </div>
 
             <div style="margin: 10px;">
-                <input id="elemVehiculoParticular4" disabled="" placeholder="Ingrese Ubicacion Final del Tramo" type="text" id="name" name="ubicacionFinal"  required
+                <input  id="elemVehiculoParticular4" disabled=""  placeholder="Ingrese la altura inicial" type="number" id="name" name="alturaInicialVehiculo"  required
                 maxlength="25" size="25" style="width: 250px ">
             </div>
 
+            <div style="margin: 10px;">
+                <input  id="elemVehiculoParticular5" disabled=""  placeholder="Ingrese la localidad inicial" type="number" id="name" name="localidadInicialVehiculo"  required
+                maxlength="25" size="25" style="width: 250px ">
+            </div>
 
+            <div style="margin: 10px;">
+                <input id="elemVehiculoParticular6" disabled="" placeholder="Ingrese Ubicacion Final del Tramo" type="text" id="name" name="ubicacionFinalVehiculo"  required
+                maxlength="25" size="25" style="width: 250px ">
+            </div>
+
+            <div style="margin: 10px;">
+                <input  id="elemVehiculoParticular7" disabled=""  placeholder="Ingrese la altura final" type="number" id="name" name="alturaFinalVehiculo"  required
+                maxlength="25" size="25" style="width: 250px ">
+            </div>
+
+            <div style="margin: 10px;">
+                <input  id="elemVehiculoParticular8" disabled=""  placeholder="Ingrese la localidad final" type="number" id="name" name="localidadFinalVehiculo"  required
+                maxlength="25" size="25" style="width: 250px ">
+            </div>
 
           </div>
 
@@ -189,12 +229,9 @@
 
 
 
-<!-- ---------------------------SCRIPT---------------------------- -->
+
 
 <script type="text/javascript">
-
-   // alert(document.getElementById('merca').value);
-
 
     function activarElementosDelTransportePublico(){
 
@@ -214,6 +251,9 @@
         document.getElementById('elemServicioContratado2').disabled=false;
         document.getElementById('elemServicioContratado3').disabled=false;
         document.getElementById('elemServicioContratado4').disabled=false;
+        document.getElementById('elemServicioContratado5').disabled=false;
+        document.getElementById('elemServicioContratado6').disabled=false;
+        document.getElementById('elemServicioContratado7').disabled=false;
 
         limpiarYBloquearValoresQueNoServicioContratado();
     }
@@ -221,6 +261,10 @@
     function activarElementosDeEcoFriendly(){
         document.getElementById('elemEcoFriendly1').disabled=false;
         document.getElementById('elemEcoFriendly2').disabled=false;
+        document.getElementById('elemEcoFriendly3').disabled=false;
+        document.getElementById('elemEcoFriendly4').disabled=false;
+        document.getElementById('elemEcoFriendly5').disabled=false;
+        document.getElementById('elemEcoFriendly6').disabled=false;
 
         limpiarYBloquearValoresQueNoSonEcoFriendly();
     }
@@ -230,9 +274,17 @@
         document.getElementById('elemVehiculoParticular2').disabled=false;
         document.getElementById('elemVehiculoParticular3').disabled=false;
         document.getElementById('elemVehiculoParticular4').disabled=false;
+        document.getElementById('elemVehiculoParticular5').disabled=false;
+        document.getElementById('elemVehiculoParticular6').disabled=false;
+        document.getElementById('elemVehiculoParticular7').disabled=false;
+        document.getElementById('elemVehiculoParticular8').disabled=false;
 
         limpiarYBloquearValoresQueNoSonVehiculoParticular();
     }
+
+
+
+
 
 //------------------------- LIMPIANDO VALORES ---------------------------//
     function limpiarYBloquearValoresQueNoSonTransportePublico(){
@@ -240,27 +292,49 @@
         document.getElementById('elemServicioContratado2').disabled=true;
         document.getElementById('elemServicioContratado3').disabled=true;
         document.getElementById('elemServicioContratado4').disabled=true;
+        document.getElementById('elemServicioContratado5').disabled=true;
+        document.getElementById('elemServicioContratado6').disabled=true;
+        document.getElementById('elemServicioContratado7').disabled=true;
 
         document.getElementById("elemServicioContratado1").value = "";
         document.getElementById("elemServicioContratado2").value = "";
         document.getElementById("elemServicioContratado3").value = "";
         document.getElementById("elemServicioContratado4").value = "";
+        document.getElementById("elemServicioContratado5").value = "";
+        document.getElementById("elemServicioContratado6").value = "";
+        document.getElementById("elemServicioContratado7").value = "";
 
         document.getElementById('elemEcoFriendly1').disabled=true;
         document.getElementById('elemEcoFriendly2').disabled=true;
+        document.getElementById('elemEcoFriendly3').disabled=true;
+        document.getElementById('elemEcoFriendly4').disabled=true;
+        document.getElementById('elemEcoFriendly5').disabled=true;
+        document.getElementById('elemEcoFriendly6').disabled=true;
 
         document.getElementById("elemEcoFriendly1").value = "";
         document.getElementById("elemEcoFriendly2").value = "";
+        document.getElementById("elemEcoFriendly3").value = "";
+        document.getElementById("elemEcoFriendly4").value = "";
+        document.getElementById("elemEcoFriendly5").value = "";
+        document.getElementById("elemEcoFriendly6").value = "";
 
         document.getElementById('elemVehiculoParticular1').disabled=true;
         document.getElementById('elemVehiculoParticular2').disabled=true;
         document.getElementById('elemVehiculoParticular3').disabled=true;
         document.getElementById('elemVehiculoParticular4').disabled=true;
+        document.getElementById('elemVehiculoParticular5').disabled=true;
+        document.getElementById('elemVehiculoParticular6').disabled=true;
+        document.getElementById('elemVehiculoParticular7').disabled=true;
+        document.getElementById('elemVehiculoParticular8').disabled=true;
 
         document.getElementById("elemVehiculoParticular1").value = "";
         document.getElementById("elemVehiculoParticular2").value = "";
         document.getElementById("elemVehiculoParticular3").value = "";
         document.getElementById("elemVehiculoParticular4").value = "";
+        document.getElementById("elemVehiculoParticular5").value = "";
+        document.getElementById("elemVehiculoParticular6").value = "";
+        document.getElementById("elemVehiculoParticular7").value = "";
+        document.getElementById("elemVehiculoParticular8").value = "";
     }
 
 
@@ -278,19 +352,35 @@
 
         document.getElementById('elemEcoFriendly1').disabled=true;
         document.getElementById('elemEcoFriendly2').disabled=true;
+        document.getElementById('elemEcoFriendly3').disabled=true;
+        document.getElementById('elemEcoFriendly4').disabled=true;
+        document.getElementById('elemEcoFriendly5').disabled=true;
+        document.getElementById('elemEcoFriendly6').disabled=true;
 
         document.getElementById("elemEcoFriendly1").value = "";
         document.getElementById("elemEcoFriendly2").value = "";
+        document.getElementById("elemEcoFriendly3").value = "";
+        document.getElementById("elemEcoFriendly4").value = "";
+        document.getElementById("elemEcoFriendly5").value = "";
+        document.getElementById("elemEcoFriendly6").value = "";
 
         document.getElementById('elemVehiculoParticular1').disabled=true;
         document.getElementById('elemVehiculoParticular2').disabled=true;
         document.getElementById('elemVehiculoParticular3').disabled=true;
         document.getElementById('elemVehiculoParticular4').disabled=true;
+        document.getElementById('elemVehiculoParticular5').disabled=true;
+        document.getElementById('elemVehiculoParticular6').disabled=true;
+        document.getElementById('elemVehiculoParticular7').disabled=true;
+        document.getElementById('elemVehiculoParticular8').disabled=true;
 
         document.getElementById("elemVehiculoParticular1").value = "";
         document.getElementById("elemVehiculoParticular2").value = "";
         document.getElementById("elemVehiculoParticular3").value = "";
         document.getElementById("elemVehiculoParticular4").value = "";
+        document.getElementById("elemVehiculoParticular5").value = "";
+        document.getElementById("elemVehiculoParticular6").value = "";
+        document.getElementById("elemVehiculoParticular7").value = "";
+        document.getElementById("elemVehiculoParticular8").value = "";
     }
 
 
@@ -309,20 +399,34 @@
 
         document.getElementById('elemEcoFriendly1').disabled=true;
         document.getElementById('elemEcoFriendly2').disabled=true;
+        document.getElementById('elemEcoFriendly3').disabled=true;
+        document.getElementById('elemEcoFriendly4').disabled=true;
+        document.getElementById('elemEcoFriendly5').disabled=true;
+        document.getElementById('elemEcoFriendly6').disabled=true;
 
         document.getElementById("elemEcoFriendly1").value = "";
         document.getElementById("elemEcoFriendly2").value = "";
-
-
-        document.getElementById('elemServicioContratado1').disabled=true;
-        document.getElementById('elemServicioContratado2').disabled=true;
-        document.getElementById('elemServicioContratado3').disabled=true;
-        document.getElementById('elemServicioContratado4').disabled=true;
+        document.getElementById("elemEcoFriendly3").value = "";
+        document.getElementById("elemEcoFriendly4").value = "";
+        document.getElementById("elemEcoFriendly5").value = "";
+        document.getElementById("elemEcoFriendly6").value = "";
 
         document.getElementById("elemServicioContratado1").value = "";
         document.getElementById("elemServicioContratado2").value = "";
         document.getElementById("elemServicioContratado3").value = "";
         document.getElementById("elemServicioContratado4").value = "";
+        document.getElementById("elemServicioContratado5").value = "";
+        document.getElementById("elemServicioContratado6").value = "";
+        document.getElementById("elemServicioContratado7").value = "";
+
+        document.getElementById('elemServicioContratado1').disabled=true;
+        document.getElementById('elemServicioContratado2').disabled=true;
+        document.getElementById('elemServicioContratado3').disabled=true;
+        document.getElementById('elemServicioContratado4').disabled=true;
+        document.getElementById('elemServicioContratado5').disabled=true;
+        document.getElementById('elemServicioContratado6').disabled=true;
+        document.getElementById('elemServicioContratado7').disabled=true;
+
     }
 
     function limpiarYBloquearValoresQueNoSonEcoFriendly(){
@@ -341,21 +445,36 @@
         document.getElementById('elemVehiculoParticular2').disabled=true;
         document.getElementById('elemVehiculoParticular3').disabled=true;
         document.getElementById('elemVehiculoParticular4').disabled=true;
+        document.getElementById('elemVehiculoParticular5').disabled=true;
+        document.getElementById('elemVehiculoParticular6').disabled=true;
+        document.getElementById('elemVehiculoParticular7').disabled=true;
+        document.getElementById('elemVehiculoParticular8').disabled=true;
 
         document.getElementById("elemVehiculoParticular1").value = "";
         document.getElementById("elemVehiculoParticular2").value = "";
         document.getElementById("elemVehiculoParticular3").value = "";
         document.getElementById("elemVehiculoParticular4").value = "";
-
-        document.getElementById('elemServicioContratado1').disabled=true;
-        document.getElementById('elemServicioContratado2').disabled=true;
-        document.getElementById('elemServicioContratado3').disabled=true;
-        document.getElementById('elemServicioContratado4').disabled=true;
+        document.getElementById("elemVehiculoParticular5").value = "";
+        document.getElementById("elemVehiculoParticular6").value = "";
+        document.getElementById("elemVehiculoParticular7").value = "";
+        document.getElementById("elemVehiculoParticular8").value = "";
 
         document.getElementById("elemServicioContratado1").value = "";
         document.getElementById("elemServicioContratado2").value = "";
         document.getElementById("elemServicioContratado3").value = "";
         document.getElementById("elemServicioContratado4").value = "";
+        document.getElementById("elemServicioContratado5").value = "";
+        document.getElementById("elemServicioContratado6").value = "";
+        document.getElementById("elemServicioContratado7").value = "";
+
+        document.getElementById('elemServicioContratado1').disabled=true;
+        document.getElementById('elemServicioContratado2').disabled=true;
+        document.getElementById('elemServicioContratado3').disabled=true;
+        document.getElementById('elemServicioContratado4').disabled=true;
+        document.getElementById('elemServicioContratado5').disabled=true;
+        document.getElementById('elemServicioContratado6').disabled=true;
+        document.getElementById('elemServicioContratado7').disabled=true;
+
     }
 
 

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grupo 2</title>
+     <link rel="icon" type="image/png" href="../../imagenes/logos_web/plantita1.png"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/tablaVerMisSectoresORG.css">
+    <link rel="stylesheet" type="text/css" href="/nav_bar.css">
+</head>
+
+<body class = "d-flex flex-column min-vh-100">
+
+
+{{>org_nav-bar.hbs}}
+
+<div>
+    <div style="text-align: center ;" class="form-group mt-3" style="width: 500px ">
+        <h1>MIS SECTORES</h1>
+        <hr>
+    </div>
+</div>
+
+<div style="text-align:center;margin-left:38%;" >
+<table class="styled-table">
+    <thead>
+    <tr>
+        <th>Nombre del Sector</th>
+    </tr>
+    </thead>
+    <tbody>
+    {{#each sectores}}
+        <tr><!-- EL TR SIGNIFICA LAS FILAS EL TH ES EL ELEMENTO DE LA COLUMNA-->
+            <td >{{sectorDeTrabajo}}</td>
+        </tr>
+    {{/each}}
+    <!-- and so on... -->
+    </tbody>
+</table>
+</div>
+
+</body>
+</html>

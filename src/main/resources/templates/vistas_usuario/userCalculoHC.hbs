@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Grupo 2</title>
-    <link rel="icon" type="image/png" href="todo: icono q aparece en la pestania"/>
+     <link rel="icon" type="image/png" href="../../imagenes/logos_web/plantita1.png"/>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="../../estiloSelectYBoton.css">
 </head>
@@ -27,16 +27,13 @@
 
         <div  class="col-3 mt-5" style="margin:0px auto; " >
 
-            <div style="margin: 25px; width: 75px;">
+            <div style="padding-left: 30px; padding-top: 30px; border-radius:25px ; background-color:#2596be; width: 500px;  height:300px;">
 
                 <form action="valorcalculohc" method="GET" >
-                    <!--
-                    <select id="select_org" style="width: 300px;" class="custom-select" name="id_org"   required>
-                        {{#each organizaciones}}
-                            <option value="{{id}}"> {{razonSocial}} </option>
-                        {{/each}}
-                    </select>-->
 
+
+
+                    <h5>Elegir organizacion:</h5>
                     <div style="margin-left:  20%; width:200px;" class="content-select form-group">
                         <select required id="select_org"  name="id_org">
                             {{#each organizaciones}}
@@ -46,8 +43,16 @@
                         <i></i>
                     </div>
 
+                    <h5> Elegir periodo:</h5>
+                    <div style="margin-left:  20%; width:200px;" class="content-select form-group">
+                    <select id="select_periodo"  name="periodo"  required>
+                        <option value="ANUAL"> ANUAL </option>
+                        <option value="MENSUAL"> MENSUAL </option>
+                    </select>
+                        <i></i>
+                    </div>
 
-                    <input style="width:300px; margin:5px;" class="mateomiamor" type="submit" value="Submit">
+                    <button style="width:300px; margin-top:1%;margin-left:10%;" class="boton verde" type="submit" value="Submit" > <span> Calcular</span></button>
 
                 </form>
             </div>
@@ -70,7 +75,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mi impacto ambiental</title>
-    <link rel="icon" type="image/png" href="todo: icono q aparece en la pestania"/>
+     <link rel="icon" type="image/png" href="../../imagenes/logos_web/plantita1.png"/>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="../../estiloSelectYBoton.css">
 

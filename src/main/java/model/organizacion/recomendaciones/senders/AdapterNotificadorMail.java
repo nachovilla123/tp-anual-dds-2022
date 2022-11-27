@@ -21,6 +21,7 @@ public class AdapterNotificadorMail implements MailSender {
 
   private void efectivizarEnvio(Contacto contacto, String guia){
     //TODO
+    System.out.println("EL contacto es: "+contacto.getNombreDelContacto() +" cuyo mail es: " + contacto.getEmailDeContacto() + "y la guia enviada es:"+ guia);
   }
 
   public List<Contacto> contactosEnElSistema(){

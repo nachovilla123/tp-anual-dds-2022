@@ -36,11 +36,13 @@ public class SigninController {
 
         if (rol.equals("ORGANIZACION")) {
 
-            response.redirect("/org/menu");
+            response.redirect("/org/home");
         } else if (rol.equals("MIEMBRO")) {
-            response.redirect("user/menu");
+            response.redirect("user/home");
         }else if (rol.equals("AGENTE_SECTORIAL")){
-            response.redirect("ag/menu");
+            response.redirect("ag/home");
+        }else if (rol.equals("ADMINISTRADOR")){
+            response.redirect("admin/home");
         }
 
         return null;

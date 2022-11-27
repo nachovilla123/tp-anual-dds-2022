@@ -28,7 +28,8 @@ public class RepositorioDeOrganizaciones extends GenericRepositoryJPA<Organizaci
 
 
   public List<Contacto> obtenerTodosLosContactosDelSistema() {
-    return null;
+
+    return this.buscarTodos().stream().flatMap(organizacion -> organizacion.getContactos().stream()).collect(Collectors.toList());
   }
 
   public List<Organizacion> traerOrganizacionesDe(SectorTerritorial sectorTerritorialAsignado) {

@@ -5,31 +5,95 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Grupo 2</title>
-    <link rel="icon" type="image/png" href="todo: icono q aparece en la pestania"/>
+     <link rel="icon" type="image/png" href="../../imagenes/logos_web/plantita1.png"/>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
 </head>
 
 
 <body class = "d-flex flex-column min-vh-100">
 
-{{>user_nav-bar.hbs}}
+{{>org_nav-bar.hbs}}
 
-      <div style="text-align:center;">
+<div style="text-align:center;">
+    <div style="margin:50px;" > <h1>REGISTRAR MEDICIONES</h1></div>
+    <hr>
 
-        <div style="margin:50px;" > <h1>REGISTRAR MEDICIONES</h1></div>
-        <hr>
-        <div style="margin:50px;"><h4>Seleccione su archivo CSV:</h4></div>
 
-       <form   action="" method="POST"  >
+    <div class="container overflow-hidden text-center">
 
-              <input style="width:500px;" type="file" name="nombre_campo">
+        <div class="row gx-5">
 
-               <div>
-               <button style="width:300px;margin-top: 50px;" type="submit" class="btn btn-success">Enviar</button>
-               </div>
+            <div class="col">
+                <div class="p-3 border bg-light">
+                    <div style="margin:50px;"><h4>Si desea cargar una medicion en particular complete el formulario:</h4></div>
 
-              </form>
+                    <form   action="registrarmedicionesFORMULARIO" method="POST"  >
 
-      </div>
+                        <select style="margin-left: 25px; width: 250px;" id="tipo_consumo" name="tipo_consumo" required>
+                            <option value="" disabled selected>Selecciones  tipos de consumo</option>
+                            <option value="GAS_NATURAL"> GAS_NATURAL </option>
+                            <option value="NAFTA"> NAFTA </option>
+                            <option value="COMBUSTIBLE_CONSUMIDO_GASOIL"> COMBUSTIBLE_CONSUMIDO_GASOIL </option>
+                            <option value="COMBUSTIBLE_CONSUMIDO_NAFTA"> COMBUSTIBLE_CONSUMIDO_NAFTA </option>
+                            <option value="ELECTRICIDAD"> ELECTRICIDAD </option>
+                            <option value="CAMION_DE_CARGA"> CAMION_DE_CARGA </option>
+                            <option value="UTILITARIO_LIVIANO"> UTILITARIO_LIVIANO </option>
+                            <option value="DISTANCIA_MEDIA_RECORRIDA"> DISTANCIA_MEDIA_RECORRIDA </option>
+                            <option value="DIESEL_GASOIL"> DIESEL_GASOIL </option>
+                        </select>
+
+                        <div style="margin-top:1%">
+                            <select style="margin-left: 25px; width: 250px;"  id="periodo" name="periodo" required>
+                                <option value="" disabled selected>Seleccione periodicidad</option>
+                                <option value="MENSUAL"> MENSUAL </option>
+                                <option value="ANUAL"> ANUAL </option>
+                            </select></div>
+
+                        <div style="margin-top:1%">
+                            <input id="valor_consumo" type="number" name="valor_consumo"  min="0"  required>  kgCO2eq
+                        </div>
+
+                        <div style="margin-top:1%">
+                            <input type="date" id="periodo_imputacion" name="periodo_imputacion" max="100" required> </div>
+
+                        <button style="width:300px;margin-top: 50px;" type="submit" class="btn btn-success">Enviar</button>
+
+                    </form>
+                </div>
+            </div>
+
+
+
+
+
+            <div class="col">
+                <div class="p-3 border bg-light">
+
+                    <div style="margin:50px;"><h4>Seleccione su archivo CSV:</h4></div>
+
+                    <form   action="registrarmedicionesCSV" method="POST" enctype='multipart/form-data' >
+                        <input style="width:500px;" type="file" name="archivoCSV">
+                        <div>
+                            <button style="width:300px;margin-top: 50px;" type="submit" class="btn btn-success">Enviar</button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+
+        </div>
+
+        </div>
+    </div>
+
+
+
+
+
+
+
+</div>
 
 </body>
+</html >
+

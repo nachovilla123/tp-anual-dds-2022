@@ -10,9 +10,7 @@ public class EnviadorDeRecomendaciones {
   String guiaRecomendacion;
   List<EstrategiaNotificacion> estrategias;
 
-  /* public enum Estrategia {
-      WHATSAPP, EMAIL
-  } */
+
 
   public EnviadorDeRecomendaciones( String guiaDeRecomendacion, List<EstrategiaNotificacion> estrategias){
     this.guiaRecomendacion = guiaDeRecomendacion;
