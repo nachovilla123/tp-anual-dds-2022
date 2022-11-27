@@ -1,0 +1,56 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grupo 2</title>
+    <link rel="icon" type="image/png" href="todo: icono q aparece en la pestania"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+</head>
+
+
+<body class = "d-flex flex-column min-vh-100">
+
+{{>user_nav-bar.hbs}}
+
+
+<body class = "d-flex flex-column min-vh-100">
+
+
+
+
+<div style="text-align: center ; ">
+
+    <div>
+        <h1 class="mt-5">CALCULADORA DE HC</h1>
+        <hr>
+    </div>
+
+
+    <div  class="col-3 mt-5" style="margin:0px auto; " >
+
+        <div style="margin: 25px; width: 75px;">
+
+            <form action="./valorcalculohc" method="GET">
+
+                <select id="select_org" style="width: 300px;" class="custom-select" name="id_org"   required>
+                    {{#each organizaciones}}
+                        <option value="{{id}}"> {{razonSocial}} </option>
+                    {{/each}}
+                </select>
+                <input type="submit" value="Submit">
+            </form>
+        </div>
+
+    </div>
+
+</div>
+
+
+
+</body>
+</body>
+
+</html>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://java.sun.com/xml/ns/persistence
+    http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
+             version="2.0">
+
+    <persistence-unit name="db" transaction-type="RESOURCE_LOCAL">
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+        <class>model.organizacion.Organizacion</class>
+        <class>model.organizacion.Miembro</class>
+        <class>model.organizacion.Sector</class>
+        <class>model.organizacion.trayecto.Ubicacion</class>
+        <class>model.organizacion.trayecto.Trayecto</class>
+        <class>model.organizacion.trayecto.Tramo</class>
+        <class>model.agentesSectoriales.SectorTerritorial</class>
+        <class>model.reporte.Reporte</class>
+        <class>model.organizacion.Persona</class>
+        <class>model.usuario.Usuario</class>
+        
+        <class>model.mediodetransporte.MedioDeTransporte</class>
+        <class>model.mediodetransporte.EcoFriendly</class>
+        <class>model.mediodetransporte.ServicioContratado</class>
+        <class>model.mediodetransporte.VehiculoParticular</class>
+        <class>model.mediodetransporte.transportepublico.Parada</class>
+        <class>model.mediodetransporte.transportepublico.TransportePublico</class>
+
+        <class>model.implementacionCSV.DatoDeActividad</class>
+        <class>model.implementacionCSV.FactorDeEmision</class>
+        <class>model.implementacionCSV.Periodo</class>
+        <class>model.implementacionCSV.tipoDeConsumo.TipoDeConsumo</class>
+
+        <properties>
+            <property name="hibernate.archive.autodetection" value="class"/>
+
+             <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" />
+            <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/tp_dds2022" />
+            <property name="hibernate.connection.username" value="root" />
+            <property name="hibernate.connection.password" value="123456" />
+
+            <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.format_sql" value="true"/>
+            <property name="use_sql_comments" value="true"/>
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
+        </properties>
+
+    </persistence-unit>
+
+</persistence> 

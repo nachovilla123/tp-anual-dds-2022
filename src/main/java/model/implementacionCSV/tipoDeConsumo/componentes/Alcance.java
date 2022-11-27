@@ -1,0 +1,7 @@
+package model.implementacionCSV.tipoDeConsumo.componentes;
+
+public enum Alcance {
+  EMISION_DIRECTA,
+  EMISION_INDIRECTA_ASOCIADA_A_ELECTRICIDAD,
+  EMISION_INDIRECTA_NO_CONTROLADA_POR_ORGANIZACION
+}

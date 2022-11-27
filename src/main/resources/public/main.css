@@ -1,0 +1,66 @@
+.red {
+    color: red;
+}
+
+.titulo {
+    font-size: 20px;
+}
+
+img {
+    height:8rem;
+    object-fit: contain;
+}
+
+
+
+.rectanguloVincularOrg {
+
+border-radius = 2px;
+background-color:rgba(254, 249, 224, 1);
+width:1440px;
+	height:1024px;
+border: 2px solid #1C6EA4;
+
+align-items: center;
+justify-content: center;
+}
+
+.formularioVincularOrg{
+border: 2px solid #1C6EA4;
+}
+
+.botonBuscarOrg{
+color: rgb(255, 255, 255);
+font-size: 30px; line-height: 30px;
+padding: 12px; border-radius: 46px;
+ font-family: Georgia, serif;
+ font-weight: normal;
+ text-decoration: none; font-style: normal;
+ font-variant: normal;
+ text-transform: none;
+ background-color: rgb(71, 105, 48);
+  display: inline-block;
+align-center;
+}
+
+.botonVincular {
+color: rgb(255, 255, 255);
+font-size: 30px; line-height: 30px;
+padding: 12px; border-radius: 46px;
+ font-family: Georgia, serif;
+ font-weight: normal;
+ text-decoration: none; font-style: normal;
+ font-variant: normal;
+ text-transform: none;
+ background-color: rgb(71, 105, 48);
+  display: inline-block;
+}
+
+.botonVincular:hover {
+background: #1C6EA4; }
+
+.botonVincular:active {
+background: #144E75; }
+
+
+

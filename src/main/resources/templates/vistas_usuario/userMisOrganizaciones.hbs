@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grupo 2</title>
+    <link rel="icon" type="image/png" href="todo: icono q aparece en la pestania"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+</head>
+
+<body class = "d-flex flex-column min-vh-100">
+
+   {{>user_nav-bar.hbs}}
+
+      <div style="padding: 40px; text-align: center;  "><h1>MIS ORGANIZACIONES</h1></div>
+
+    <div >
+
+
+        <div  class="row row-cols-1 row-cols-sm-2 row-cols-md-5">
+
+        {{#each organizaciones}}
+        <div >
+            <img style="width: 150px ; height: 150px ;" src={{srcImg}}>
+            <h5 style="padding-left: 40px;">{{razonSocial}} </h5>
+        </div>
+         {{/each}}
+
+         </div>
+
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grupo 2</title>
+    <link rel="icon" type="image/png" href="todo: icono q aparece en la pestania"/> 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+</head>
+
+
+<body class = "d-flex flex-column min-vh-100">
+
+    <nav class="navbar sticky-top navbar-dark navbar-expand-lg bg-dark">
+        <div class="container">
+          <a class="navbar-brand" href="../admin/admin_principal.html">
+            <img src="../resources/plantita.png" alt="logo" width = "50" height="50">
+          </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item pr-4">
+                <a class="nav-link active text-white" aria-current="page" href="../admin/admin_principal.html">Menu</a>
+              </li>
+              <li class="nav-item pr-4">
+                <a class="nav-link text-white" href="#">Cerrar sesion</a>
+              </li>
+          </div>
+        </div>
+      </nav>
+
+    <div>
+
+        <div style="text-align: center;"> <h1 style="color: #000;" >REGISTRAR TRAMO</h1></div>         
+       
+        <div style="padding-left: 25px;">
+            <h5> 1) Ingrese un nombre para identificar al tramo </h5>
+            <h5> 2) Seleccione el transporte del tramo </h5>
+            <h5> 3) Confirme la creacion del tramo </h5>
+        </div>
+        <hr/>
+
+        </div>
+        
+        <div  style="text-align: center ;" class="form-group mt-3" style="width: 500px ">
+            <input placeholder="Ingrese un nombre para identificar al tramo" type="text" id="name" name="name" required
+            maxlength="25" size="25" style="width: 500px ">
+        </div>
+        <hr/>
+  
+    </div>
+
+    <div class="container text-center">
+        <div class="row">
+          <div class="col">
+
+           
+
+            <li style="list-style:none;">
+                <input type="radio" name="preg1" value="activarElementosDelTransportePublico" onclick="activarElementosDelTransportePublico()"/> <strong>TRANSPORTE PUBLICO</strong> 
+            </li>
+               
+            <div style="margin: 10px;">
+            <select id="elemTransportePublico1" disabled="" class="custom-select" name="TipoTransporte" required>
+                <!-- todo: hacer un get de paradas y desplegarlas -->
+                <option value="">Seleccione Tipo Transporte</option>
+            </select>
+            </div>
+
+            <div style="margin: 10px;">
+            <select id="elemTransportePublico2" disabled="" class="custom-select" name="LineaTransporte"   required>
+                <!-- todo: hacer un get de linea y desplegarlas -->
+                <option value="">Seleccione Linea...</option>
+            </select>
+            </div>
+
+            <div style="margin: 10px;">
+            <select id="elemTransportePublico3" disabled=""  class="custom-select" name="ParadaInicio"   required>
+                <!-- todo: hacer un get de paradas y desplegarlas -->
+                <option value="">Seleccione Parada Fin...</option>
+            </select>
+            </div>
+
+            <div style="margin: 10px;">
+            <select id="elemTransportePublico4" disabled="" class="custom-select" name="ParadaFin"   required>
+                <!-- todo: hacer un get de paradas y desplegarlas -->
+                <option value="">Seleccione Parada Fin...</option>
+            </select>
+            </div>
+           
+        </div>
+
+
+          <div class="col">
+            <li style="list-style:none;">
+                <input onclick="activarElementosDelServicioContratado()" type="radio" name="preg1" value="3" /><strong>SERVICIO CONTRATADO</strong> 
+            </li>
+               
+            <div style="margin: 10px;">
+            <select id="elemServicioContratado1" disabled="" class="custom-select" name="TipoTransporte"   required>
+                <!-- todo: hacer un get de paradas y desplegarlas -->
+                <option value="">Seleccione Servicio contratado</option>
+            </select>
+            </div>
+
+            <div style="margin: 10px;">
+                <input id="elemServicioContratado2" disabled="" class="test" placeholder="Ingrese Ubicacion Inicio del Tramo" type="text" id="name" name="name" required
+                maxlength="25" size="25" style="width: 250px ">
+            </div>
+
+            <div style="margin: 10px;">
+                <input id="elemServicioContratado3" disabled="" placeholder="Ingrese Ubicacion Final del Tramo" type="text" id="name" name="name" required
+                maxlength="25" size="25" style="width: 250px ">
+            </div>
+
+            <div style="margin: 10px;">
+            <select id="elemServicioContratado4" disabled="" class="custom-select" name="ParadaFin"   required>
+                <!-- todo: hacer un get de paradas y desplegarlas -->
+                <option value="">Seleccione Parada Fin...</option>
+            </select>
+            </div>
+               
+          </div>
+
+
+          <div class="col">
+          
+            <li style="list-style:none;">
+                <input type="radio" name="preg1" value="3" onclick="activarElementosDeEcoFriendly()"  /><strong>ECOFRIENDLY</strong>  
+            </li>
+               
+            <div style="margin: 10px;">
+                <input id="elemEcoFriendly1" disabled="" placeholder="Ingrese Ubicacion Inicio del Tramo" type="text" id="name" name="name" required
+                maxlength="25" size="25" style="width: 250px ">
+            </div>
+
+            <div style="margin: 10px;">
+                <input  id="elemEcoFriendly2" disabled=""  placeholder="Ingrese Ubicacion Final del Tramo" type="text" id="name" name="name" required
+                maxlength="25" size="25" style="width: 250px ">
+            </div>
+
+
+          </div>
+
+
+          <div class="col">
+
+            
+            <li style="list-style:none;">
+                <input onclick="activarElementosDeVehiculoParticular()" type="radio" name="preg1" value="3" /> <strong>VEHICULO PARTICULAR</strong> 
+            </li>
+            
+            <div class="elementosDelVehiculoParticular">
+            <div style="margin: 10px;">
+            <select id="elemVehiculoParticular1" disabled="" class="custom-select" name="TipoTransporte"   required>
+                <!-- todo: hacer un get de paradas y desplegarlas -->
+                <option value="">Seleccione Tipo Vehiculo...</option>
+            </select>
+            </div>
+
+            <div style="margin: 10px;">
+            <select id="elemVehiculoParticular2" disabled="" class="custom-select" name="LineaTransporte"   required>
+                <!-- todo: hacer un get de linea y desplegarlas -->
+                <option value="">Seleccione combustible utilizado</option>
+            </select>
+            </div>
+
+            <div style="margin: 10px;">
+                <input id="elemVehiculoParticular3" disabled="" placeholder="Ingrese Ubicacion Inicio del Tramo" type="text" id="name" name="name" required
+                maxlength="25" size="25" style="width: 250px ">
+            </div>
+
+            <div style="margin: 10px;">
+                <input id="elemVehiculoParticular4" disabled="" placeholder="Ingrese Ubicacion Final del Tramo" type="text" id="name" name="name" required
+                maxlength="25" size="25" style="width: 250px ">
+            </div>
+
+
+
+          </div>
+
+
+        </div>
+        </div>
+      </div>
+
+      <hr>
+    
+    <div style="text-align:center; padding: 25px; " >
+        <button style="width:300px; height: 50px; font-size:25px;" type="button" class="btn btn-success">Confirmar Tramo</button>
+    </div>
+
+
+
+<!-- ---------------------------SCRIPT---------------------------- -->
+
+<script type="text/javascript">
+
+    function activarElementosDelTransportePublico(){
+
+        document.getElementById('elemTransportePublico1').disabled=false;
+        document.getElementById('elemTransportePublico2').disabled=false;
+        document.getElementById('elemTransportePublico3').disabled=false;
+        document.getElementById('elemTransportePublico4').disabled=false;
+
+    limpiarYBloquearValoresQueNoSonTransportePublico();
+
+    }
+
+
+    function activarElementosDelServicioContratado(){
+        
+        document.getElementById('elemServicioContratado1').disabled=false;
+        document.getElementById('elemServicioContratado2').disabled=false;
+        document.getElementById('elemServicioContratado3').disabled=false;
+        document.getElementById('elemServicioContratado4').disabled=false;
+
+        limpiarYBloquearValoresQueNoServicioContratado();
+    }
+
+    function activarElementosDeEcoFriendly(){
+        document.getElementById('elemEcoFriendly1').disabled=false;
+        document.getElementById('elemEcoFriendly2').disabled=false;
+
+        limpiarYBloquearValoresQueNoSonEcoFriendly();
+    }
+
+    function activarElementosDeVehiculoParticular(){
+        document.getElementById('elemVehiculoParticular1').disabled=false;
+        document.getElementById('elemVehiculoParticular2').disabled=false;
+        document.getElementById('elemVehiculoParticular3').disabled=false;
+        document.getElementById('elemVehiculoParticular4').disabled=false;
+
+        limpiarYBloquearValoresQueNoSonVehiculoParticular();
+    }
+
+
+   
+    
+
+//------------------------- LIMPIANDO VALORES ---------------------------//
+    function limpiarYBloquearValoresQueNoSonTransportePublico(){
+        document.getElementById('elemServicioContratado1').disabled=true;
+        document.getElementById('elemServicioContratado2').disabled=true;
+        document.getElementById('elemServicioContratado3').disabled=true;
+        document.getElementById('elemServicioContratado4').disabled=true;
+
+        document.getElementById("elemServicioContratado1").value = "";
+        document.getElementById("elemServicioContratado2").value = "";
+        document.getElementById("elemServicioContratado3").value = "";
+        document.getElementById("elemServicioContratado4").value = "";
+
+        document.getElementById('elemEcoFriendly1').disabled=true;
+        document.getElementById('elemEcoFriendly2').disabled=true;
+
+        document.getElementById("elemEcoFriendly1").value = "";
+        document.getElementById("elemEcoFriendly2").value = "";
+
+        document.getElementById('elemVehiculoParticular1').disabled=true;
+        document.getElementById('elemVehiculoParticular2').disabled=true;
+        document.getElementById('elemVehiculoParticular3').disabled=true;
+        document.getElementById('elemVehiculoParticular4').disabled=true;
+
+        document.getElementById("elemVehiculoParticular1").value = "";
+        document.getElementById("elemVehiculoParticular2").value = "";
+        document.getElementById("elemVehiculoParticular3").value = "";
+        document.getElementById("elemVehiculoParticular4").value = "";
+    }
+
+
+    function limpiarYBloquearValoresQueNoServicioContratado(){
+        document.getElementById('elemTransportePublico1').disabled=true;
+        document.getElementById('elemTransportePublico2').disabled=true;
+        document.getElementById('elemTransportePublico3').disabled=true;
+        document.getElementById('elemTransportePublico4').disabled=true;
+
+        document.getElementById("elemTransportePublico1").value = "";
+        document.getElementById("elemTransportePublico2").value = "";
+        document.getElementById("elemTransportePublico3").value = "";
+        document.getElementById("elemTransportePublico4").value = "";
+
+
+        document.getElementById('elemEcoFriendly1').disabled=true;
+        document.getElementById('elemEcoFriendly2').disabled=true;
+
+        document.getElementById("elemEcoFriendly1").value = "";
+        document.getElementById("elemEcoFriendly2").value = "";
+
+        document.getElementById('elemVehiculoParticular1').disabled=true;
+        document.getElementById('elemVehiculoParticular2').disabled=true;
+        document.getElementById('elemVehiculoParticular3').disabled=true;
+        document.getElementById('elemVehiculoParticular4').disabled=true;
+        
+        document.getElementById("elemVehiculoParticular1").value = "";
+        document.getElementById("elemVehiculoParticular2").value = "";
+        document.getElementById("elemVehiculoParticular3").value = "";
+        document.getElementById("elemVehiculoParticular4").value = "";
+    }
+    
+
+    function limpiarYBloquearValoresQueNoSonVehiculoParticular(){
+        document.getElementById('elemTransportePublico1').disabled=true;
+        document.getElementById('elemTransportePublico2').disabled=true;
+        document.getElementById('elemTransportePublico3').disabled=true;
+        document.getElementById('elemTransportePublico4').disabled=true;
+
+        document.getElementById("elemTransportePublico1").value = "";
+        document.getElementById("elemTransportePublico2").value = "";
+        document.getElementById("elemTransportePublico3").value = "";
+        document.getElementById("elemTransportePublico4").value = "";
+
+
+
+        document.getElementById('elemEcoFriendly1').disabled=true;
+        document.getElementById('elemEcoFriendly2').disabled=true;
+
+        document.getElementById("elemEcoFriendly1").value = "";
+        document.getElementById("elemEcoFriendly2").value = "";
+
+
+        document.getElementById('elemServicioContratado1').disabled=true;
+        document.getElementById('elemServicioContratado2').disabled=true;
+        document.getElementById('elemServicioContratado3').disabled=true;
+        document.getElementById('elemServicioContratado4').disabled=true;
+
+        document.getElementById("elemServicioContratado1").value = "";
+        document.getElementById("elemServicioContratado2").value = "";
+        document.getElementById("elemServicioContratado3").value = "";
+        document.getElementById("elemServicioContratado4").value = "";
+    }
+
+    function limpiarYBloquearValoresQueNoSonEcoFriendly(){
+        document.getElementById('elemTransportePublico1').disabled=true;
+        document.getElementById('elemTransportePublico2').disabled=true;
+        document.getElementById('elemTransportePublico3').disabled=true;
+        document.getElementById('elemTransportePublico4').disabled=true;
+
+        document.getElementById("elemTransportePublico1").value = "";
+        document.getElementById("elemTransportePublico2").value = "";
+        document.getElementById("elemTransportePublico3").value = "";
+        document.getElementById("elemTransportePublico4").value = "";
+
+
+        document.getElementById('elemVehiculoParticular1').disabled=true;
+        document.getElementById('elemVehiculoParticular2').disabled=true;
+        document.getElementById('elemVehiculoParticular3').disabled=true;
+        document.getElementById('elemVehiculoParticular4').disabled=true;
+        
+        document.getElementById("elemVehiculoParticular1").value = "";
+        document.getElementById("elemVehiculoParticular2").value = "";
+        document.getElementById("elemVehiculoParticular3").value = "";
+        document.getElementById("elemVehiculoParticular4").value = "";
+
+        document.getElementById('elemServicioContratado1').disabled=true;
+        document.getElementById('elemServicioContratado2').disabled=true;
+        document.getElementById('elemServicioContratado3').disabled=true;
+        document.getElementById('elemServicioContratado4').disabled=true;
+
+        document.getElementById("elemServicioContratado1").value = "";
+        document.getElementById("elemServicioContratado2").value = "";
+        document.getElementById("elemServicioContratado3").value = "";
+        document.getElementById("elemServicioContratado4").value = "";
+    }
+        
+
+    
+</script>
+<!-- ---------------------------SCRIPT---------------------------- -->
+
+</body>

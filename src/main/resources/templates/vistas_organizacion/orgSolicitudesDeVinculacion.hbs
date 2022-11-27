@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi impacto ambiental</title>
+    <link rel="icon" type="image/png" href="todo: icono q aparece en la pestania"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+</head>
+
+<body class = "d-flex flex-column min-vh-100">
+
+{{>org_nav-bar.hbs}}
+
+    <div style=" text-align:center;">
+
+        <div style="margin: 25px;">
+            <h1> SOLICITUD DE VINCULACION</h1>
+        </div>
+
+        <div style="  margin:0px auto;">
+
+            <table style="  table-layout: fixed;
+            width: 100%;
+            border-collapse: collapse;
+            border: 3px solid black;">
+                <tr style="margin: 25 px ;">
+                  <th>Nombre</th>
+                  <th>Apellido</th>
+                  <th>Documento</th>
+                  <th>Sector</th>
+                  <th></th>
+                </tr>
+
+
+                {{#each solicitudes}}
+
+
+                <tr><!-- EL TR SIGNIFICA LAS FILAS EL TH ES EL ELEMENTO DE LA COLUMNA-->
+
+                  <td>{{solicitante.nombre}}</td> <!-- NOMBRE-->
+                  <td>{{solicitante.apellido}}</td><!-- apellido-->
+                  <td>{{solicitante.numeroDocumento}}</td><!-- doc-->
+                  <td>{{sectorAvincular.sectorDeTrabajo}}</td><!-- sector-->
+                  <td><!-- le falta el id_sector en el action-->
+                      <form   action="/org/menu/solicitudesdevinculacion/aceptar/{{id}}" method="POST" >
+                      <button type="submit" class="btn btn-success"  >Aceptar</button>
+                      </form>
+                  </td><!-- Boton aceptar-->
+                  <td><!-- le falta el id_sector en el action-->
+                      <form   action="/org/menu/solicitudesdevinculacion/rechazar/{{id}}" method="POST"  >
+                      <button type="submit" class="btn btn-danger"  >Rechazar</button>
+                      </form>
+                  </td><!-- boton rechazar-->
+                </tr>
+
+                {{/each}}
+
+
+              </table>
+
+        </div>
+
+
+
+    </div>
+
+</body>
+</html>

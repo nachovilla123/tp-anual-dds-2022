@@ -1,0 +1,51 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Impacto Ambiental </title>
+    <link rel="icon" type="image/png" href="todo: icono q aparece en la pestania"/> 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="estilo.css">
+
+</head>
+
+<body>
+
+
+  <div style="padding: 25px; text-align:center;"> <h1>EVOLUCION DE HC DE UNA ORGANIZACIÓN</h1> <hr></div>
+    <form id="form-param">
+    	<div class="container">
+    	    <div>
+    	        <input type="text" class="parametro" placeholder="parametro"><input type="number" class="valor" placeholder="valor">
+            </div>
+    	    <div>
+    	        <input type="text" class="parametro" placeholder="parametro"><input type="number" class="valor" placeholder="valor">
+            </div>
+    	</div>
+    	<div style="text-align: center; " class="buttons">
+
+        <div style="padding:10px;">
+          <select  class="custom-select" name="TipoTransporte"   required>
+            <!-- todo: hacer un get de organizacion y desplegarlas -->
+            <option value="">Seleccione organización...</option>
+        </select>
+        </div>
+    		<!-- <button type="button" class="addParam">Agregar Parametro</button> descomentar en caso de que tengamos que agregar un nuevo parametro-->
+
+        
+
+    		<button  style="width: 250px;" type="button"  class="btn btn-success showResults">Calcular</button>
+    	</div>
+    </form>
+    <div id="grafico"></div>
+    <script src="script.js"></script>
+
+</body>
+</html>
+

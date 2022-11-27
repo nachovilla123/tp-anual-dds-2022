@@ -1,0 +1,68 @@
+{{#partial "contenido"}}
+
+
+ <form action="/session" method="POST">
+          <div class="mb-3">
+            <label for="nombreInput" class="form-label">Nombre</label>
+            <input type="text" class="form-control" id="nombreInput" name="nombre" value="{{ nombre }}">
+          </div>
+
+           <div class="mb-3">
+                  <label for="nombreInput" class="form-label">Apellido</label>
+                  <input type="text" class="form-control" id="nombreInput" name="apellido" value="{{ nombre }}">
+                </div>
+
+          <div class="mb-3">
+            <label for="passwordInput" class="form-label">Password</label>
+            <input type="password" class="form-control" id="passwordInput" name="password" value="{{ password }}">
+          </div>
+                 <button type="submit" class="e11_795" class="btn btn-primary">  Ingresadsasdasdara </button>
+        </form>
+
+
+<div class="rectanguloVincularOrg" >
+<h1> VINCULAR A ORGANIZACION </h1>
+
+<form class ="formularioVincularOrg" action="" method="post" target="_blank">
+  <p>
+    Busque su organizacion <input type="search" name="busquedaorganizacion" size="25" maxlength="25">
+    <input class="botonBuscarOrg" type="submit" value="Buscar">
+  </p>
+
+    <p>
+      Seleccione su sector<select name="select">
+                         <option value="value1">RRHH</option>
+                         <option value="value2" selected>Administracion</option>
+                         <option value="value3">Value 3</option>
+                       </select>
+    </p>
+
+         <input class = "botonVincular" type="submit" value="VINCULAR" >
+</form>
+</div>
+
+<button type="button" class="btn btn-primary">Primary</button>
+
+{{/partial}}
+{{>layout.hbs}}
+
+
+
+ <form   action="/session" style="text-align: center ;"> <!-- agregar action y metodo HTTP ej POST-->
+
+      <div  style="text-align: center ;" class="form-group mt-3" style="width: 500px ">
+        <input placeholder="Ingrese su Nombre" type="text" id="name" name="name" required
+        maxlength="25" size="25" style="width: 500px " value="{{ nombre }}">
+      </div>
+
+
+      <div style="text-align: center ;" class="form-group mt-3" style="width: 500px">
+        <input placeholder="Ingrese su contraseña" type="password" id="inputPassword" class="pull-center"
+         aria-describedby="passwordHelpBlock"  style="width: 500px " value="{{ password }}">
+      </div>
+
+      <div style="margin-top: 15px;">
+          <a  style="width: 500px  " type="button" class="btn btn-success" href="./session">Ingresar</a>
+      </div>
+
+  </form>

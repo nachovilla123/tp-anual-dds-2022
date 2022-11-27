@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi impacto ambiental</title>
+    <link rel="icon" type="image/png" href="todo: icono q aparece en la pestania"/> 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+</head>
+<script
+    src="https://code.jquery.com/jquery-3.3.1.js"
+    integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+    crossorigin="anonymous">
+</script>
+<script> 
+$(function(){
+
+$("#header").load("us-header.html");
+});
+
+
+
+</script>
+
+<body class = "d-flex flex-column min-vh-100">
+
+    <nav class="navbar sticky-top navbar-dark navbar-expand-lg bg-dark">
+        <div class="container">
+          <a class="navbar-brand" href="../admin/admin_principal.html">
+            <img src="../resources/plantita.png" alt="logo" width = "50" height="50">
+          </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item pr-4">
+                <a class="nav-link active text-white" aria-current="page" href="../admin/admin_principal.html">Menu</a>
+              </li>
+              <li class="nav-item pr-4">
+                <a class="nav-link text-white" href="#">Cerrar sesion</a>
+              </li>
+          </div>
+        </div>
+    </nav>
+
+    <div style=" text-align:center;">
+
+        <div style="margin: 25px;">
+            <h1> Registrate</h1>
+            <h6> Es rápido y sencillo</h6>
+        </div>
+       
+    
+    </div>
+
+    <section class="form-section container">
+    
+        <form  style="text-align: center ;" > <!-- agregar action y metodo HTTP ej POST-->
+          
+    
+            <div  style="text-align: center ;" class="form-group mt-3" style="width: 500px ">
+              <input placeholder="Ingrese su Nombre" type="text" id="name" name="name" required
+              maxlength="25" size="25" style="width: 500px ">
+            </div>
+
+            <div  style="text-align: center ;text-align: center ;" class="form-group mt-3" style="width: 500px ">
+              <input placeholder="Ingrese su Apellido" type="text" id="name" name="name" required
+              maxlength="25" size="25" style="width: 500px ">
+            </div>
+
+            <div  style="text-align: center ;" class="form-group mt-3" style="width: 500px ">
+                <input placeholder="Ingrese su Documento" type="text" id="name" name="name" required
+                maxlength="25" size="25" style="width: 500px ">
+            </div>
+
+            <div style="margin: 20px ; ">
+            <select style="width: 500px;" class="custom-select" name="tipoDocumento"   required>
+                <!-- todo: hacer un get de TIPOS DOCUMENTO  y desplegarlas -->
+                <option  value="">Seleccione tipo de documento...</option>
+            </select>
+            </div>
+
+            <div style="text-align: center ;" class="form-group mt-3" style="width: 500px">
+              <input placeholder="Ingrese su contraseña" type="password" id="inputPassword" class="pull-center" aria-describedby="passwordHelpBlock"  style="width: 500px " >
+            </div>
+
+            <div style="text-align: center ;" class="form-group mt-3" style="width: 500px">
+                <input placeholder="Confirme su contraseña" type="password" id="inputPassword" class="pull-center" aria-describedby="passwordHelpBlock"  style="width: 500px " >
+            </div>
+
+         
+            
+            <div style="margin-top: 15px;">
+                <button  style="width: 500px  " type="button" class="btn btn-success">Registrarse</button>
+            </div>
+          
+         
+        </form>
+        </section>
+
+
+</body>

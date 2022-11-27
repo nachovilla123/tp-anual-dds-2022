@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi impacto ambiental</title>
+    <link rel="icon" type="image/png" href="todo: icono q aparece en la pestania"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+</head>
+
+<body class = "d-flex flex-column min-vh-100">
+
+     {{>user_nav-bar.hbs}}
+
+       <div style=" text-align:center;">
+
+        <div style="margin: 25px;">
+            <h1>VINCULAR A ORGANIZACIÓN</h1>
+            <hr>
+        </div>
+
+        <div style=" margin:25px;">
+            <div>
+
+                <form action="./vincularasector" method="GET">
+                    <select name="id_org"  style="width:230px ;" class="custom-select" onchange="obtenerSectores('select_org', 'select_sector')"  required>
+                        {{#each organizaciones}}
+                            <option value={{id}}> {{razonSocial}} </option>
+                        {{/each}}
+                    </select>
+
+                    <input type="submit" value="Seleccionar organizacion">
+
+                </form>
+
+
+            </div>
+
+
+        </div>
+       </div>
+
+
+
+
+<script>
+
+    function resetearOpciones(selectElement, textoPorDefecto){
+        selectElement.innerHTML = "";
+        let opt1 = document.createElement("option");
+        opt1.text = textoPorDefecto;
+        opt1.value = "";
+        opt1.disabled = true;
+        opt1.selected = true;
+        selectElement.appendChild(opt1);
+
+    }
+
+    function agregarASelect(selectElement, arr){
+        for(let i = 0; i < arr.length; i++)
+        {
+            var opt = document.createElement("option");
+            opt.value = arr[i].id;
+            opt.text = arr[i].sectorDeTrabajo;
+            selectElement.appendChild(opt);
+        }
+    }
+
+    async function obtenerSectores(idSelectOrg, idSelecSector){
+
+        let idOrg = document.getElementById(idSelectOrg).value;
+        let selecSector = document.getElementById(idSelecSector);
+        selecSector.disabled = false;
+
+        let sectores = [];
+
+        await fetch('http://localhost:9000/sectores/' + idOrg, { // aca tenemos que ponerl el nuestro
+                    method: 'GET'
+                }
+        ).then(response => response.json())
+                .then(json => sectores = json);
+
+        // vaciamos el select
+        selecSector.innerHTML = "";
+        // establecemos el predeterminado
+        resetearOpciones(selecSector, "--Seleccione un area--");
+        //Llenar:
+        agregarASelect(selecSector, sectores);
+        selecSector.required = sectores.length > 0;
+    }
+</script>
+
+
+
+</body>
+</html>

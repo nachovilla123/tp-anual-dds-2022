@@ -1,0 +1,36 @@
+
+{{#partial "contenido"}}
+     <form action="/capturas" method="GET">
+              <div class="mb-3">
+                <label for="searchNombre" class="form-label">Nombre a buscar</label>
+                <input type="text" class="form-control" id="searchNombre" name="likeNombre" value="{{ likeNombre }}">
+              </div>
+              <button type="submit" class="btn btn-primary">Buscar</button>
+            </form>
+
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3">
+               {{#each capturas }}
+               <div class="col p-2">
+                  <div class="card shadow-sm p-2">
+                     <img src="{{ pokemon.principalImage }}" class="card-img-top" alt="{{ pokemon.nombre }}">
+                     <div class="card-body">
+                        <h5 class="card-title">
+                            {{ apodo }}
+                            {{#if nuevo}} <span class="badge rounded-pill bg-info">Nuevo</span> {{/if}}
+                        </h5>
+                        <p class="card-text">
+                            Tiene un nivel de {{ nivel }}, fue capturado el  {{ fechaCaptura }} y
+                            {{#if pokemon.evolucion }} tiene evolución
+                            {{ else }} no tiene evolución.
+                            {{/if}}
+                        </p>
+                     </div>
+                  </div>
+               </div>
+               {{/each}}
+            </div>
+{{/partial}}
+
+{{>layout.hbs}}
+
+

@@ -1,0 +1,443 @@
+@startuml
+organizacion-->Coordenada
+organizacion-->"*"Sector
+organizacion-->Tipo
+organizacion-->Clasificacion
+
+
+Miembro-->"*" Sector
+Miembro--> Trayecto
+Miembro--> TipoDocumento
+Trayecto--> Miembro
+
+organizacion-->"*" DatoActividad
+DatoActividad--> FactorDeEmision
+DatoActividad--> TipoDeConsumo
+DatoActividad--> Periodo
+FactorDeEmision--> Unidad
+TipoDeConsumo--> Unidad
+TipoDeConsumo--> Actividad
+TipoDeConsumo--> Alcance
+
+Sector--> SectorDeTrabajo
+Sector-->"*" Miembro
+
+Tramo-->"2" Coordenada
+Tramo--> mediodetransporte
+
+Trayecto-->"*" Tramo
+
+TransportePublico -->"*" Parada
+TransportePublico --> TipoTransporte
+
+
+Administrador -->"*" organizacion
+Administrador --> ValidadorContra
+
+
+VehiculoParticular--> TipoCombustible
+VehiculoParticular--> TipotransporteParticular
+
+
+
+
+mediodetransporte --> GeoDDS
+
+class organizacion{
+-idOrganizacion: int
+-sectores: Set<Sector>
+-RazonSocial: String
+-tipoDeOrganizacion: Tipo
+-ubicacionGeografica: Ubicacion
+-clasificacion: Clasificacion
+-contactos: Set<Contactos>
+-mediciones: List<Double>
+-sectorTerritorial: SectorTerritorial
+-datosDeActividades: set<DatoDeActividad>
+-repositorioDA: RepositorioDA
+
+agregarSector(Sector)
+ejecutarCalculadoraHC()
+aceptarVinculacionDeTrabajador()
+visualizarReportes()
+visualizarRecomendaciones()
+registrarMedicion()
+cargarMediciones(String pathArchivo)
+
+}
+
+enum Tipo {
+GUBERNAMENTAL
+ONG
+EMPRESA
+INSTITUCION
+}
+
+enum Clasificacion {
+MINISTERIO
+UNIVERSIDAD
+ESCUELA
+EMPRESA_SECTOR_PRIMARIO
+EMPRESA_SECTOR_SECUNDARIO
+}
+
+organizacion ->"*" Contacto
+
+class Contacto {
+emailDeContacto: String
+numeroDeContactoWPP: int
+nombreDeContacto: String
+}
+
+class DatoActividad{
+tipo: TipoDeConsumo
+periodo: Periodo
+valor: Double
+periodoImputacion: LocalDate
+repoFactorEmision: RepositorioFE
+factorDeEmision: FactorDeEmision
+
+Double calcularHC()
+}
+
+FactorDeEmision --> TipoDeConsumo
+class FactorDeEmision {
+tipo : TipoDeConsumo
+valor: Double
+
+}
+
+enum Periodo{
+MENSUAL("MM/yyyy")
+ANUAL("yyyy")
+}
+
+class TipoDeConsumo{
+-id: long
+-unidad: Unidad
+-alcance: Alcance
+-Actividad: Actividad
+
+}
+
+enum Unidad{
+
+M3
+LT
+LTS
+KG
+KWH
+KM
+
+}
+
+enum Actividad{
+
+COMBUSTION_FIJA
+COMBUSTION_MOVIL
+ELECTRICIDAD_ADQUIRIDA_CONSUMIDA
+LOGISTICA_PRODUCTOS_RESIDUOS
+
+}
+
+enum Alcance{
+
+EMISION_DIRECTA
+EMISION_INDIRECTA_ELECTRICIDAD
+EMISION_INDIRECTA_NO_CONTROLADA
+
+}
+
+
+class Miembro{
+-id : int
+-nombre: String
+-apellido: String
+-numeroDocumento: Int
+-tipoDeDocumento: TipoDocumento
+-trabajos: Set<sectores>
+-registroTrayectos: Set<Trayecto>
+
+ejecutarCalculadoraHc()
+visualizarReporte()
+vincularTrabajadorOrganizacionSector(organizacion organizacion, Sector sector)
+agregarTrabajo(organizacion organizacion, Sector sector)
+registrarTrayecto(Trayecto unTrayecto)
+validarTrayecto(Trayecto unTrayecto)
+puedeSerCompartido(Trayecto unTrayecto)
+
+}
+
+enum TipoDocumento{
+DNI
+LIBRETA
+PASAPORTE
+}
+
+class Sector{
+-id: int
+-miembros: Set<Miembro>
+-trabajadoresEnEspera: Set<Miembro>
+-areaDeTrabajo: enum AreaDeTrabajo
+
+
+agregarMiembro(miembroAgregar)
+agregarAlistaDeEspera(trabajador)
+visualizarReportes()
+visualizarRecomendaciones()
+}
+
+enum SectorDeTrabajo{
+ADMINSTRACION
+CONTADURIA
+RRHH
+}
+
+class Trayecto {
+-id Trayecto
+-puntoInicial: Coordenada
+-puntoFinal: Coordenada
+-tramosDelTrayecto: List<Tramo>
+-miembros: Set<Miembro>
+
+calcularHC()
+agregarTramo(Tramo nuevoTramo)
+agregarMiembro(Miembro miembro)
+calcularDistanciaEnKM()
+}
+
+class Tramo{
+
+-medioDeTransporte mediodetransporte
+-origen: Ubicacion
+-destino: Ubicacion
+-miembros : Set<Miembro>
+
+}
+
+Tramo -->"2" Ubicacion
+
+
+
+class Coordenada{
+-coordenadaEnX: Integer
+-coordenadEnY: Integer
+}
+
+
+abstract class mediodetransporte{
+-tipoDeConsumo: TipoDeConsumo
+esCompartible()
+distancia(Ubicacion origen, Ubicacion destino)
+}
+
+
+mediodetransporte <|.. TransportePublico
+mediodetransporte <|..ServicioContratado
+mediodetransporte <|.. EcoFriendly
+mediodetransporte <|.. VehiculoParticular
+
+
+class ServicioContratado {
+-tipoServiciocontratado: String
+-UbicacionInicio: Ubicacion
+-UbicacionFInal: Ubicacion
+-cantidadCompustiblePorKM: Double
+ ServicioContratado ()
+}
+
+class EcoFriendly {
+
+}
+
+class VehiculoParticular {
+
+-tipoCombustibleUtilizado: TipoCombustible
+-tipoVehiculo: TipotransporteParticular
+-dirreccionInicio: String
+-dirreccionFinal: String
+-cantidadCompustiblePorKM: Double
+VehiculoParticular ()
+
+}
+
+enum TipotransporteParticular {
+MOTO
+AUTO
+CAMIONETA
+}
+
+enum TipoCombustible {
+GNC
+NAFTA
+ELECTRICO
+GASOIL
+}
+
+class TransportePublico {
+
+-tipoTransporte: Tipotransportepublico
+-linea String
+-paradas List<Parada>
+
+
+buscarParada (Ubicacion ubicacion)
+}
+
+
+
+class Parada {
+-distanciaASiguiente: Double
+-paradaAnterior: Parada
+-paradaSiguiente: Parada
+-Ubicacion: Ubicacion
+}
+
+
+enum TipoTransporte{
+FERROCARRIL
+SUBTERANEO
+COLECTIVO
+}
+
+
+
+class Administrador {
+-organizaciones: ArrayList<organizacion>
+-usuario: String
+-password: String
+
+resetPassword(password,validador)
+}
+
+
+class ValidadorContra{
+-contraseñasFrecuentes: List<String>
+
+ValidadorContra()
+esValida()
+subirContrasAMem()
+noEstaEnElTop10mil()
+matcheaRegex()
+}
+
+
+
+class Distancia {
+-valor: String
+-unidad: String
+}
+
+interface GeoDDS{
+ Call<Distancia> distanciaEntreUbicaciones()
+}
+
+GeoDDS <|.. ServicioGeoDDS
+ServicioGeoDDS --> Distancia
+
+class ServicioGeoDDS{
+-instancia: ServicioGeoDDS
+-urlApi: string
+
+instancia()
+distanciaEntreLasUbicaciones(Ubicacion origen, Ubicacion destino)
+}
+
+
+class Ubicacion {
+-int localidad
+-String calle
+-int altura
+}
+
+class EnviadorDeRecomendaciones{
+-guiaRecomendacion: String
+-estrategias: list<EstrategiaNotificacion>
+enviarRecomendacion()
+agregarEstrategia(EstrategiaNotificacion estrategia)
+
+}
+EnviadorDeRecomendaciones-->"*" EstrategiaNotificacion
+
+EstrategiaNotificacion<|.. NotificadorMail
+EstrategiaNotificacion<|.. NotificadorWPP
+
+interface EstrategiaNotificacion{
+
+enviarGuia(String guia)
+
+}
+
+class NotificadorMail{
+- adapter: AdapterNotificadorMail
+}
+
+class NotificadorWPP{
+- adapter: AdapterNotificadorWPP
+}
+
+MailSender<|.. AdapterNotificadorMail
+WhatsAppSender<|.. AdapterNotificadorWPP
+
+NotificadorMail-->AdapterNotificadorMail
+NotificadorWPP-->AdapterNotificadorWPP
+
+
+interface MailSender{
+enviarMail(String guiaDeRecomendacion)
+}
+
+interface WhatsAppSender{
+enviarWPP(String guiaDeRecomendacion)
+}
+
+class AdapterNotificadorWPP{
+
+efectivizarEnvio(Contacto contacto, String guia)
+contactosEnElSistema()
+
+}
+
+class AdapterNotificadorMail{
+
+efectivizarEnvio(Contacto contacto, String guia)
+contactosEnElSistema()
+
+}
+
+class AgenteSectorial{
+-sectorTerritorialAsginado: SectorTerritorial
+-repositorioDeOrganizaciones: RepositorioDeOrganizaciones
+-organizacionesDentroDelSectorTerritorial : List<Organizacion>
+
+cargarOrganizacionesDelSector()
+obtenerHCTotalDelSectorTerritorial()
+}
+
+class SectorTerriotorial{
+- sectorTerritorial: String
+}
+
+
+AgenteSectorial--> SectorTerriotorial
+AgenteSectorial--> "*"organizacion
+AgenteSectorial-->RepositorioDeOrganizaciones
+organizacion--> SectorTerriotorial
+
+
+
+RepositorioDeOrganizaciones-->"*" organizacion
+AdapterNotificadorMail..> RepositorioDeOrganizaciones
+AdapterNotificadorWPP..> RepositorioDeOrganizaciones
+
+class RepositorioDeOrganizaciones{
+organizacionesDelSistema: List<Organizacion>
+
+agregarOrganizacion(Organizacion organizacion)
+obtenerTodosLosContactosDelSistema()
+traerOrganizacionDe(SectorTerritorial sectorTerritorialAsignado)
+
+}
+
+@endum
+@enduml
